@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 
 import { RxCross2 } from "react-icons/rx";
 
-const Modal = ({ showModal, setShowModal, title, children }) => {
+const Modal = ({ showModal, setShowModal, title, children,  }) => {
+  const [pageNumber, setPageNumber] = useState(2);
   const crossHandler = () => {
     setShowModal(false);
   };
-  
+
+  const renderContent = () => {
+    const childrenArray = React.Children.toArray(children);
+    return childrenArray[pageNumber - 1];
+  };
+
   return (
     showModal && (
       <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -19,7 +25,9 @@ const Modal = ({ showModal, setShowModal, title, children }) => {
             <h1 className="text-2xl text-[#30313d] font-semibold p-2 pb-6">
               {title}
             </h1>
-            {children}
+            {renderContent()}
+            <></>
+            <button>Next</button>
           </div>
         </div>
       </div>
