@@ -6,8 +6,8 @@ import { GoChevronDown } from "react-icons/go";
 const Accordian = ({ title, icon, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="accordian-wrapper border shadow-lg rounded-lg">
-      <div className="accordian flex flex-col gap-2  px-6">
+    <div className={`accordian-wrapper cursor-pointer ${isOpen ? 'border border-1 border-[#e6e6e6]' : 'bg-white'}`}>
+      <div className={`accordian flex flex-col gap-1 px-2 ${isOpen ? 'pt-2 pb-8 px-4' : ''}`}>
         <div
           className="flex items-center justify-between p-2"
           onClick={() => {
@@ -15,13 +15,13 @@ const Accordian = ({ title, icon, children }) => {
           }}
         >
           <div className="flex items-center gap-5">
-            {icon}
+            <span className="text-lg text-[#3f4754]">{icon}</span>
             {/* <icon className="text-2xl" /> */}
-            <h1 className="text-lg text-left font-semibold">{title}</h1>
+            <h1 className="text-lg text-left font-semibold text-[#3f4754]">{title}</h1>
           </div>
           <GoChevronDown className="text-2xl" />
         </div>
-        {isOpen && <div className="h-[300px] overflow-y-scroll">{children}</div>}
+        {isOpen && <div className=" overflow-y-scroll border bg-white">{children}</div>}
       </div>
     </div>
   );

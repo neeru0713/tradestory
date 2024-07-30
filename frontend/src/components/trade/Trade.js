@@ -4,6 +4,7 @@ import { TradeForm } from "./TradeForm";
 import { TradeSelection } from "./TradeSelection";
 import Modal from "../modal/Modal";
 
+
 const Trade = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -11,7 +12,8 @@ const Trade = () => {
     setShowModal(true);
   };
   return (
-    <div className="flex p-6 gap-6 items-center relative">
+    <div className="flex flex-col p-6 relative">
+      <div className="flex items-center gap-6">
       <h1 className="text-[#30313d] text-lg font-semibold">Trade Manage</h1>
       <div
         onClick={clickPlusHandler}
@@ -20,15 +22,24 @@ const Trade = () => {
         <h1>New Trade</h1>
         <FiPlus className="font-semibold" />
       </div>
+      </div>
 
       <Modal
         showModal={showModal}
         setShowModal={setShowModal}
         title="New Trade"
+        numberOfPages={2}
+        height={800}
+        width={600}
       >
-        <TradeSelection/>
-        <TradeForm/>
+        <TradeSelection />
+        <TradeForm />
       </Modal>
+      <div className="flex">
+ 
+        
+     
+      </div>
     </div>
   );
 };
