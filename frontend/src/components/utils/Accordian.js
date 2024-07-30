@@ -3,15 +3,15 @@ import React, { useState } from "react";
 
 import { GoChevronDown } from "react-icons/go";
 
-const Accordian = ({ title, icon, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Accordian = ({ name,title, icon, children, onClick, isOpen}) => {
+  
   return (
     <div className={`accordian-wrapper cursor-pointer ${isOpen ? 'border border-1 border-[#e6e6e6]' : 'bg-white'}`}>
       <div className={`accordian flex flex-col gap-1 px-2 ${isOpen ? 'pt-2 pb-8 px-4' : ''}`}>
         <div
           className="flex items-center justify-between p-2"
           onClick={() => {
-            setIsOpen((isOpen) => !isOpen);
+           onClick(name)
           }}
         >
           <div className="flex items-center gap-5">

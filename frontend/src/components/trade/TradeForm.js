@@ -12,6 +12,8 @@ import { FaInfoCircle } from "react-icons/fa";
 export const TradeForm = () => {
   const [selectedTab, setSelectedTab] = useState("Basic Info");
   const [returns, setReturns] = useState(0);
+  const [isAccordian1Open, setIsAccordian1Open] = useState(false);
+  const [isAccordian2Open, setIsAccordian2Open] = useState(false);
   const getCurrentTime = () => {
     const today = new Date();
     const hh = String(today.getHours()).padStart(2, "0");
@@ -19,6 +21,15 @@ export const TradeForm = () => {
     return `${hh}:${mm}`;
   };
 
+  const handleAccordian = (accordianName) => {
+    if (accordianName === "BasicInfo") {
+      setIsAccordian1Open(!isAccordian1Open);
+      setIsAccordian2Open(false)
+    } else if (accordianName === "Checklist") {
+      setIsAccordian2Open(!isAccordian2Open);
+      setIsAccordian1Open(false)
+    }
+  };
   const getCurrentDate = () => {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -101,9 +112,7 @@ export const TradeForm = () => {
   ];
 
   const [checklistState, setChecklistState] = useState({});
-  const [isOpen, setIsOpen] = useState(false)
-
-
+  const [isOpen, setIsOpen] = useState(false);
 
   const indexOptions = [
     {
@@ -214,7 +223,13 @@ export const TradeForm = () => {
       </div> */}
 
       <div className="border rounded-lg mt-4">
-        <Accordian title="Basic Info" icon={<FaInfoCircle />}>
+        <Accordian
+          name="BasicInfo"
+          isOpen={isAccordian1Open}
+          onClick={handleAccordian}
+          title="Basic Info"
+          icon={<FaInfoCircle />}
+        >
           <div className="basic-info-wrapper h-[400px] flex flex-col overflow-scroll p-4 gap-2">
             <Selector
               type="text"
@@ -300,10 +315,20 @@ export const TradeForm = () => {
           </div>
         </Accordian>
         <hr></hr>
-        <Accordian title="Checklist" icon={<FaThList />}>
+        <Accordian
+          name="Checklist"
+          isOpen={isAccordian2Open}
+          onClick={handleAccordian}
+          title="Checklist"
+          icon={<FaThList />}
+        >
           <div id="checklist-wrapper" className="flex flex-col gap-2 m-2">
             {checklistItems?.map((item) => (
-             <Checkbox data={item} checklistState={checklistState} setChecklistState={setChecklistState}/>
+              <Checkbox
+                data={item}
+                checklistState={checklistState}
+                setChecklistState={setChecklistState}
+              />
             ))}
           </div>
         </Accordian>
