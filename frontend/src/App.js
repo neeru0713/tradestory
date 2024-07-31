@@ -3,9 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import SideNav from "./components/nav/SideNav";
 import Trade from "./components/trade/Trade";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 function App() {
   return (
     <BrowserRouter>
+      <Provider store={store}> 
       <div className="App flex h-screen">
         <div className="w-[20%] h-full">
           <SideNav />
@@ -17,6 +20,7 @@ function App() {
           </Routes>
         </div>
       </div>
+      </Provider>
     </BrowserRouter>
   );
 }
