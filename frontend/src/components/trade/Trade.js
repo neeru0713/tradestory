@@ -6,8 +6,6 @@ import Modal from "../modal/Modal";
 
 const Trade = () => {
   const [showModal, setShowModal] = useState(false);
-
-
   const clickPlusHandler = () => {
     setShowModal(true);
   };

@@ -9,13 +9,14 @@ const Button = ({ name, width, className, type }) => {
     let customStyles = {
       background: "#635bff",
       color: "white",
+      fontWeight: "500"
       
     };
     styles = { ...styles, ...customStyles };
   } else if (type === "secondary") {
     let customStyles = {
       background: "white",
-      color: "#635bff",
+      color: "#0f0f0f",
     
 
     };
@@ -24,7 +25,7 @@ const Button = ({ name, width, className, type }) => {
 
   return (
     <button
-      className={`${className} ${type === 'secondary' ? 'secondary-button' : null} border rounded-md shadow-lg p-2`}
+      className={`${className} ${type === 'secondary' ? 'secondary-button' : null} border rounded-md shadow-lg p-2 shadow-lg`}
       style={styles}
     >
       {name}

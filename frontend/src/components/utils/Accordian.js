@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-
 import { GoChevronDown } from "react-icons/go";
 
 const Accordian = ({ name,title, icon, children, onClick, isOpen}) => {

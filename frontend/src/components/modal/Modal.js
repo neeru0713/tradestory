@@ -63,7 +63,7 @@ const Modal = ({
                 {pageNumber > 1 && (
                   <div
                     onClick={() => setPageNumber(pageNumber - 1)}
-                    className="flex "
+                    className="flex"
                   >
                     <Button name="Prev" width="150" type="secondary" />
                   </div>
