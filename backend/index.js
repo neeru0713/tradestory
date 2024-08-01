@@ -11,6 +11,7 @@ dotenv.config({ path: path.resolve(__dirname, '..', envFile) });
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+app.use("/api/trade", tradeRoutes);
 
 const mongoUrl = process.env.MONGODB_URL;
 

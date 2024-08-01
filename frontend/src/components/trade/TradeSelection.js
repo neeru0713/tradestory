@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
 import { PiRadioButtonFill } from "react-icons/pi";
 import { useSelector, useDispatch } from "react-redux";
-import { updateSelectedTradeType } from "../../redux/actions/tradeAction";
+import { updateTrade } from "../../redux/actions/tradeAction";
 export const TradeSelection = () => {
   const dispatch = useDispatch();
-  const selectedTradeType = useSelector(
-    (state) => state.trade.selectedTradeType
-  );
+  const trade = useSelector((state) => state.trade);
 
   useEffect(() => {
-    console.log("*******", selectedTradeType);
-  }, [selectedTradeType]);
+    console.log("*******", trade);
+  }, [trade]);
 
   const tradeTypes = [
     {
@@ -40,8 +38,12 @@ export const TradeSelection = () => {
   ];
 
   const handleSelectionChange = (event) => {
-    console.log("000000",event.target.value)
-    dispatch(updateSelectedTradeType(event.target.value));
+    let obj = {
+      selectedTradeType: event.target.value,
+    };
+    console.log("000000", event.target.value);
+
+    dispatch(updateTrade(obj));
   };
 
   return (
@@ -56,7 +58,7 @@ export const TradeSelection = () => {
             type="radio"
             class="h-4 w-4"
             value={tradeType.value}
-            checked={selectedTradeType === tradeType.value}
+            checked={trade.selectedTradeType === tradeType.value}
             onChange={handleSelectionChange}
           />
           <label>{tradeType.label}</label>

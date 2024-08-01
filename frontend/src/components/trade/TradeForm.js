@@ -6,66 +6,71 @@ import Chip from "../utils/Chip";
 import Accordian from "../utils/Accordian";
 import { FaThList } from "react-icons/fa";
 import Checkbox from "../form/checkbox/Checkbox";
+import { useSelector, useDispatch } from "react-redux";
+import { updateTrade } from "../../redux/actions/tradeAction";
 
 import { FaInfoCircle } from "react-icons/fa";
 
 export const TradeForm = () => {
-  const [selectedTab, setSelectedTab] = useState("Basic Info");
-  const [returns, setReturns] = useState(0);
+  const dispatch = useDispatch();
+  const trade = useSelector((state) => state.trade);
+
   const [isAccordian1Open, setIsAccordian1Open] = useState(false);
   const [isAccordian2Open, setIsAccordian2Open] = useState(false);
-  const getCurrentTime = () => {
-    const today = new Date();
-    const hh = String(today.getHours()).padStart(2, "0");
-    const mm = String(today.getMinutes()).padStart(2, "0");
-    return `${hh}:${mm}`;
-  };
+  //   const getCurrentTime = () => {
+  //     const today = new Date();
+  //     const hh = String(today.getHours()).padStart(2, "0");
+  //     const mm = String(today.getMinutes()).padStart(2, "0");
+  //     return `${hh}:${mm}`;
+  //   };
+
+  useEffect(() => {
+    console.log("*******", trade);
+  }, [trade]);
 
   const handleAccordian = (accordianName) => {
     if (accordianName === "BasicInfo") {
       setIsAccordian1Open(!isAccordian1Open);
-      setIsAccordian2Open(false)
+      setIsAccordian2Open(false);
     } else if (accordianName === "Checklist") {
       setIsAccordian2Open(!isAccordian2Open);
-      setIsAccordian1Open(false)
+      setIsAccordian1Open(false);
     }
   };
-  const getCurrentDate = () => {
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, "0");
-    const dd = String(today.getDate()).padStart(2, "0");
-    return `${yyyy}-${mm}-${dd}`;
-  };
-  const [tradeData, setTradeData] = useState({
-    marketIndex: "",
-    lotSize: 1,
-    time: getCurrentTime(),
-    date: getCurrentDate(),
-    riskRewardRatio: "1",
-    entryPrice: 0,
-    exitPrice: 0,
-    pnl: 0,
-    backTest: false,
-    mistakeTypeValue: "",
-  });
+  //   const getCurrentDate = () => {
+  //     const today = new Date();
+  //     const yyyy = today.getFullYear();
+  //     const mm = String(today.getMonth() + 1).padStart(2, "0");
+  //     const dd = String(today.getDate()).padStart(2, "0");
+  //     return `${yyyy}-${mm}-${dd}`;
+  //   };
+  //   const [selectedTradeType, setTradeData] = useState({
+  //     marketIndex: "",
+  //     lotSize: 1,
+  //     time: getCurrentTime(),
+  //     date: getCurrentDate(),
+  //     riskRewardRatio: "1",
+  //     entryPrice: 0,
+  //     exitPrice: 0,
+  //     pnl: 0,
+  //     backTest: false,
+  //     mistakeTypeValue: "",
+  //   });
+
+  //   useEffect(() => {
+  //     console.log("***** : ", tradeData);
+  //   }, [tradeData]);
 
   useEffect(() => {
-    console.log("***** : ", tradeData);
-  }, [tradeData]);
-
-  useEffect(() => {
-    let pnl = tradeData.exitPrice - tradeData.entryPrice;
-    setTradeData((tradeData) => ({ ...tradeData, pnl: pnl }));
+    let pnl = trade.exitPrice - trade.entryPrice;
+    dispatch(updateTrade({ pnl: pnl }));
 
     let returnsVal =
-      tradeData.entryPrice > 0
-        ? ((tradeData.exitPrice - tradeData.entryPrice) /
-            tradeData.entryPrice) *
-          100
+      trade.entryPrice > 0
+        ? ((trade.exitPrice - trade.entryPrice) / trade.entryPrice) * 100
         : 0;
-    setReturns(returnsVal);
-  }, [tradeData.entryPrice, tradeData.exitPrice]);
+    dispatch(updateTrade(returnsVal));
+  }, [trade.entryPrice, trade.exitPrice]);
 
   const inputChangeHandler = (name, value, type) => {
     let val = value;
@@ -76,8 +81,11 @@ export const TradeForm = () => {
         val = "";
       }
     }
+    let obj = {
+      [name]: value,
+    };
 
-    setTradeData((tradeData) => ({ ...tradeData, [name]: val }));
+    dispatch(updateTrade(obj));
   };
 
   const checklistItems = [
@@ -111,8 +119,16 @@ export const TradeForm = () => {
     },
   ];
 
-  const [checklistState, setChecklistState] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
+  const mistakeTypeValuesOptions = [
+    { value: "BP", label: "Bad Psychology" },
+    { value: "F", label: "FOMO" },
+    { value: "RCE", label: "Running Candle Entry" },
+    { value: "V", label: "Volatility" },
+    { value: "UM", label: "Unpredictable Market" },
+    { value: "S", label: "Sideways" },
+    { value: "G", label: "Greed" },
+    { value: "OE", label: "Over Expectation" },
+  ];
 
   const indexOptions = [
     {
@@ -234,7 +250,7 @@ export const TradeForm = () => {
             <Selector
               type="text"
               name="marketIndex"
-              value={tradeData.marketIndex}
+              value={trade.marketIndex}
               updateValue={inputChangeHandler}
               options={indexOptions}
               label="Market Index"
@@ -242,7 +258,7 @@ export const TradeForm = () => {
             <TextField
               type="number"
               name="lotSize"
-              value={tradeData.lotSize}
+              value={trade.lotSize}
               updateValue={inputChangeHandler}
               label="LotSize"
             />
@@ -250,14 +266,14 @@ export const TradeForm = () => {
               <TextField
                 type="date"
                 name="date"
-                value={tradeData.date}
+                value={trade.date}
                 updateValue={inputChangeHandler}
                 label="Date"
               />
               <TextField
                 type="time"
                 name="time"
-                value={tradeData.time}
+                value={trade.time}
                 updateValue={inputChangeHandler}
                 label="Time"
               />
@@ -266,14 +282,14 @@ export const TradeForm = () => {
               <TextField
                 type="number"
                 name="entryPrice"
-                value={tradeData.entryPrice}
+                value={trade.entryPrice}
                 updateValue={inputChangeHandler}
                 label="Entry Price"
               />
               <TextField
                 type="number"
                 name="exitPrice"
-                value={tradeData.exitPrice}
+                value={trade.exitPrice}
                 updateValue={inputChangeHandler}
                 label="Exit Price"
               />
@@ -282,32 +298,34 @@ export const TradeForm = () => {
               type="number"
               name="pnl"
               disabled={true}
-              value={tradeData.pnl}
+              value={trade.pnl}
               updateValue={inputChangeHandler}
               label="P&L Value"
             />
 
             <Selector
               name="riskRewardRatio"
-              value={tradeData.riskRewardRatio}
+              value={trade.riskRewardRatio}
               updateValue={inputChangeHandler}
               label="Risk/Reward Ratio"
               options={riskRewardRatioOptions}
             />
 
-            {tradeData.pnl < 0 && (
+            {trade.pnl < 0 && (
               <Selector
                 name="mistakeTypeValues"
-                value={tradeData.mistakeTypeValue}
+                value={trade.mistakeTypeValue}
                 updateValue={inputChangeHandler}
+                options={mistakeTypeValuesOptions}
               />
             )}
 
             <div className="flex items-center gap-2">
               <TextField
                 type="checkbox"
-                checked={tradeData.backTest}
-                name="Back Test"
+                checked={trade.backTest}
+                name="backTest"
+                value={trade.backTest}
                 updateValue={inputChangeHandler}
               />
               <h1>BackTest</h1>
@@ -326,8 +344,8 @@ export const TradeForm = () => {
             {checklistItems?.map((item) => (
               <Checkbox
                 data={item}
-                checklistState={checklistState}
-                setChecklistState={setChecklistState}
+                // checklistState={checklistState}
+                // setChecklistState={setChecklistState}
               />
             ))}
           </div>
