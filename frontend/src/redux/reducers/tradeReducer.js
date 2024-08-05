@@ -28,26 +28,47 @@ const initialState = {
   backTest: false,
   mistakeTypeValue: "",
   tradeType: "",
+  checklistItems: []
 };
 
 
 const tradeReducer = (state = initialState, action) => {
-  console.log("111111",action.payload)
   switch (action.type) {
     case UPDATE_TRADE:
       return {
-        selectedTradeType: action.payload.selectedTradeType ? action.payload.selectedTradeType : state.selectedTradeType,
-        marketIndex: action.payload.marketIndex ? action.payload.marketIndex : state.marketIndex,
-        lotSize: action.payload.lotSize ? action.payload.lotSize : state.lotSize,
+        selectedTradeType: action.payload.selectedTradeType
+          ? action.payload.selectedTradeType
+          : state.selectedTradeType,
+        marketIndex: action.payload.marketIndex
+          ? action.payload.marketIndex
+          : state.marketIndex,
+        lotSize: action.payload.lotSize
+          ? action.payload.lotSize
+          : state.lotSize,
         time: action.payload.time ? action.payload.time : state.time,
         date: action.payload.date ? action.payload.date : state.date,
-        riskRewardRatio: action.payload.riskRewardRatio ? action.payload.riskRewardRatio : state.riskRewardRatio,
-        entryPrice: action.payload.entryPrice ? action.payload.entryPrice : state.entryPrice,
-        exitPrice: action.payload.exitPrice ? action.payload.exitPrice : state.exitPrice,
+        riskRewardRatio: action.payload.riskRewardRatio
+          ? action.payload.riskRewardRatio
+          : state.riskRewardRatio,
+        entryPrice: action.payload.entryPrice
+          ? action.payload.entryPrice
+          : state.entryPrice,
+        exitPrice: action.payload.exitPrice
+          ? action.payload.exitPrice
+          : state.exitPrice,
         pnl: action.payload.pnl ? action.payload.pnl : state.pnl,
-        backTest: action.payload.backTest ? action.payload.backTest : state.backTest,
-        mistakeTypeValue: action.payload.mistakeTypeValue ? action.payload.mistakeTypeValue : state.mistakeTypeValue,
-        tradeType: action.payload.tradeType ? action.payload.tradeType : state.tradeType,
+        backTest: action.payload.backTest
+          ? action.payload.backTest
+          : state.backTest,
+        mistakeTypeValue: action.payload.mistakeTypeValue
+          ? action.payload.mistakeTypeValue
+          : state.mistakeTypeValue,
+        tradeType: action.payload.tradeType
+          ? action.payload.tradeType
+          : state.tradeType,
+        checklistItems: action.payload.checklistItems
+          ? action.payload.checklistItems
+          : state.checklistItems,
       };
 
     default:

@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { PiRadioButtonFill } from "react-icons/pi";
 import { useSelector, useDispatch } from "react-redux";
 import { updateTrade } from "../../redux/actions/tradeAction";
+
+
+
 export const TradeSelection = () => {
   const dispatch = useDispatch();
   const trade = useSelector((state) => state.trade);
@@ -49,7 +52,7 @@ export const TradeSelection = () => {
   return (
     <div className="flex flex-col gap-2 px-4">
       <h1 className="text-left text-xl text-[#383838] font-semibold m-2">
-        Select your trading{" "}
+        Select your trading
         <span className="text-[#473fc0] font-bold">Style</span>
       </h1>
       {tradeTypes.map((tradeType) => (

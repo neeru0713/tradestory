@@ -72,6 +72,8 @@ export const TradeForm = () => {
     dispatch(updateTrade(returnsVal));
   }, [trade.entryPrice, trade.exitPrice]);
 
+  
+  
   const inputChangeHandler = (name, value, type) => {
     let val = value;
     if (type === "number") {
@@ -87,6 +89,24 @@ export const TradeForm = () => {
 
     dispatch(updateTrade(obj));
   };
+
+
+  
+  
+  const handleCheckboxChange = (value, checked) => {
+    let updatedChecklistItems;
+
+    if (checked) {
+      updatedChecklistItems = [...trade?.checklistItems, value];
+    } else {
+      updatedChecklistItems = trade?.checklistItems.filter(
+        (item) => item !== value
+      );
+    }
+    dispatch(updateTrade({ checklistItems: updatedChecklistItems }));
+  };
+
+
 
   const checklistItems = [
     {
@@ -130,6 +150,8 @@ export const TradeForm = () => {
     { value: "OE", label: "Over Expectation" },
   ];
 
+
+
   const indexOptions = [
     {
       value: "N",
@@ -152,6 +174,8 @@ export const TradeForm = () => {
       label: "Sensex",
     },
   ];
+
+
 
   const riskRewardRatioOptions = [
     {
@@ -221,7 +245,8 @@ export const TradeForm = () => {
           </div>
           <div className="flex flex-col tab">
             <h1
-              onClick={() => setSelectedTab("Checklist")}
+              onClick={() => setSelectedTab("
+              ")}
               className={`hover:rounded-md py-1 px-2 mb-1 ${
                 selectedTab === "Checklist"
                   ? "text-[#523afd] hover:bg-[#f7f5fc]"
@@ -344,8 +369,7 @@ export const TradeForm = () => {
             {checklistItems?.map((item) => (
               <Checkbox
                 data={item}
-                // checklistState={checklistState}
-                // setChecklistState={setChecklistState}
+                onChange={handleCheckboxChange}
               />
             ))}
           </div>
