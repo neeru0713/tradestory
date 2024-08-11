@@ -1,6 +1,6 @@
 import React from "react";
 import './Button.css';
-const Button = ({ name, width, className, type }) => {
+const Button = ({ name, width, className, type, onClick }) => {
   let styles = {
     width: `${width}px`,
   };
@@ -27,6 +27,7 @@ const Button = ({ name, width, className, type }) => {
     <button
       className={`${className} ${type === 'secondary' ? 'secondary-button' : null} border rounded-md shadow-lg p-2 shadow-lg`}
       style={styles}
+      onClick={onClick}
     >
       {name}
     </button>

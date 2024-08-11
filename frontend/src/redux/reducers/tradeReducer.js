@@ -1,4 +1,9 @@
-import { UPDATE_TRADE } from "../types";
+import {
+  UPDATE_TRADE,
+  CREATE_TRADE,
+  CREATE_TRADE_SUCCESS,
+  CREATE_TRADE_FAIL,
+} from "../types";
 
 const getCurrentDate = () => {
   const today = new Date();
@@ -28,9 +33,8 @@ const initialState = {
   backTest: false,
   mistakeTypeValue: "",
   tradeType: "",
-  checklistItems: []
+  checklist: {},
 };
-
 
 const tradeReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -66,11 +70,20 @@ const tradeReducer = (state = initialState, action) => {
         tradeType: action.payload.tradeType
           ? action.payload.tradeType
           : state.tradeType,
-        checklistItems: action.payload.checklistItems
-          ? action.payload.checklistItems
-          : state.checklistItems,
+        checklist: action.payload.checklist
+          ? action.payload.checklist
+          : state.checklist,
       };
 
+    case CREATE_TRADE_SUCCESS:
+      return {
+        trade: action.payload?.trade ? [...action.payload?.trade] : [],
+        createTrade: action.payload?.trade
+          ? action.payload?.trade
+          : state.createTrade,
+      };
+    case CREATE_TRADE_FAIL:
+      return state;
     default:
       return state;
   }

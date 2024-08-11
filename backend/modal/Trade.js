@@ -1,7 +1,4 @@
-// models/trade.js
 const mongoose = require('mongoose');
-
-
 const indexOptions = [
   { value: 'N', label: 'Nifty 50' },
   { value: 'NB', label: 'Nifty Bank' },
@@ -38,7 +35,7 @@ const tradeSchema = new mongoose.Schema(
       type: String,
       enum: indexOptions.map(option => option.value),
     },
-    tradeType: {
+    selectedTradeType: {
       type: String,
       enum: tradeTypes.map(tradeType => tradeType.value),
     },

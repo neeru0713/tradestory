@@ -14,7 +14,7 @@ import { FaInfoCircle } from "react-icons/fa";
 export const TradeForm = () => {
   const dispatch = useDispatch();
   const trade = useSelector((state) => state.trade);
-
+  const checklist = useSelector((state) => state.checklist);
   const [isAccordian1Open, setIsAccordian1Open] = useState(false);
   const [isAccordian2Open, setIsAccordian2Open] = useState(false);
   //   const getCurrentTime = () => {
@@ -27,6 +27,11 @@ export const TradeForm = () => {
   useEffect(() => {
     console.log("*******", trade);
   }, [trade]);
+
+
+  useEffect(() => {
+    console.log("*******", checklist);
+  }, [checklist]);
 
   const handleAccordian = (accordianName) => {
     if (accordianName === "BasicInfo") {

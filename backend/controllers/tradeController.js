@@ -14,7 +14,15 @@ const createTrade = async (req, res) => {
   }
 };
 
+const getTrades = async (req, res) => {
+  let trades = await tradeService.getTrades();
+  let resObj = {
+    trades,
+  };
+  res.status(200).json(resObj);
+};
 
 module.exports = {
-  createTrade
+  createTrade,
+  getTrades,
 };

@@ -1,19 +1,20 @@
-const { Trade } = require("../models/Trade.js");
+const { Trade } = require("../modal/Trade.js");
 
 async function createTrade(tradeBody) {
-  console.log(tradeBody);
-  try {
-    tradeBody.setupCheckList = tradeBody.checkedItems;
-    const newTrade = new Trade(tradeBody);
-    console.log(tradeBody);
-    const result = await newTrade.save();
-    return result;
-  } catch (error) {
-    console.error("Error creating Trade: ", error.message);
-    throw error;
-  }
+
+  let newTrade = new Trade(tradeBody);
+  await newTrade.save()
+  return newTrade;
+}
+
+async function getTrades() {
+
+    const trades = await Trade.find({});
+    return trades;
+
 }
 
 module.exports = {
   createTrade,
+  getTrades
 };

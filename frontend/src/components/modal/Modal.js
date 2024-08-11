@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { RxCross2 } from "react-icons/rx";
 import Button from "../form/button/Button";
+import { useSelector,useDispatch } from "react-redux";
+import { createTrade } from "../../redux/actions/tradeAction";
 
 const Modal = ({
   showModal,
@@ -13,9 +15,12 @@ const Modal = ({
   width,
 }) => {
   const [pageNumber, setPageNumber] = useState(1);
+  const dispatch = useDispatch();
+  const trade = useSelector((state) => state.trade);
   const crossHandler = () => {
     setShowModal(false);
   };
+
 
   const styles = {
     height: height + "px",
@@ -26,6 +31,14 @@ const Modal = ({
     const childrenArray = React.Children.toArray(children);
     return childrenArray[pageNumber - 1];
   };
+
+
+  const handleSubmit =  () => {
+      dispatch(createTrade());
+  
+    }
+    
+  
 
   return (
     showModal && (
@@ -71,7 +84,12 @@ const Modal = ({
 
                 {numberOfPages === pageNumber && (
                   <div>
-                    <Button name="Submit" width="150" type="primary" />
+                    <Button
+                      name="Submit"
+                      width="150"
+                      type="primary"
+                      onClick={handleSubmit}
+                    />
                   </div>
                 )}
               </div>

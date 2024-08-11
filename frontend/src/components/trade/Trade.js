@@ -3,12 +3,28 @@ import { FiPlus } from "react-icons/fi";
 import { TradeForm } from "./TradeForm";
 import { TradeSelection } from "./TradeSelection";
 import Modal from "../modal/Modal";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
 const Trade = () => {
+  const dispatch = useDispatch();
+  const trade = useSelector((state) => state.trade);
   const [showModal, setShowModal] = useState(false);
+  const [data, setData] = useState([]);
   const clickPlusHandler = () => {
     setShowModal(true);
   };
+
+  async function getTrades() {
+    const response = await axios.get("http://localhost:8080/api/trade");
+    console.log(response.data);
+    setData(response.data.trades);
+  }
+
+  useEffect(() => {
+    getTrades();
+  }, []);
+
   return (
     <div className="flex flex-col p-6 relative">
       <div className="flex items-center gap-6">
@@ -20,6 +36,11 @@ const Trade = () => {
           <h1>New Trade</h1>
           <FiPlus className="font-semibold" />
         </div>
+        <div>
+        {data?.map((item,index) => (
+          <div>{item.pnl}</div>
+          ))}
+          </div>
       </div>
 
       <Modal

@@ -6,6 +6,8 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
 const envFile = ".env";
+const tradeRoutes = require("./routes/tradeRoutes.js");
+
 dotenv.config({ path: path.resolve(__dirname, '..', envFile) });
 
 app.use(cors());
