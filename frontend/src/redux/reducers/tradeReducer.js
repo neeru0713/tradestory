@@ -5,6 +5,37 @@ import {
   CREATE_TRADE_FAIL,
 } from "../types";
 
+const checklistItems = [
+  {
+    value: "IT",
+    label: "In the trend",
+  },
+  {
+    value: "EMA",
+    label: "9ema + 15ema",
+  },
+  {
+    value: "HC",
+    label: "Hammer Candle",
+  },
+  {
+    value: "BBC",
+    label: "Big Bar Candle",
+  },
+  {
+    value: "BBWEW",
+    label: "Big Bar With Equal Wicks",
+  },
+  {
+    value: "WFP",
+    label: "Waited For Pullback",
+  },
+  {
+    value: "DE",
+    label: "Direct Entry",
+  },
+];
+
 const getCurrentDate = () => {
   const today = new Date();
   const yyyy = today.getFullYear();
@@ -20,8 +51,14 @@ const getCurrentTime = () => {
   return `${hh}:${mm}`;
 };
 
+let initialChecklist = {}
+
+checklistItems.forEach((item) =>{
+  initialChecklist = {...initialChecklist, [item.value] : false}
+})
+
 const initialState = {
-  selectedTradeType: "",
+  selectedTradeType: "N",
   marketIndex: "",
   lotSize: 1,
   time: getCurrentTime(),
@@ -33,7 +70,7 @@ const initialState = {
   backTest: false,
   mistakeTypeValue: "",
   tradeType: "",
-  checklist: {},
+  checklist: initialChecklist,
 };
 
 const tradeReducer = (state = initialState, action) => {

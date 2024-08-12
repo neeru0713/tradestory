@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { updateTrade } from "../../../redux/actions/tradeAction";
 
 const Checkbox = ({ data, onChange }) => {
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
     console.log("++++++++", value);
     console.log("++++++++", checked);
-    onChange(value,checked)
+    onChange(event)
 };
 
 

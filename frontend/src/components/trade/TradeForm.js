@@ -14,7 +14,7 @@ import { FaInfoCircle } from "react-icons/fa";
 export const TradeForm = () => {
   const dispatch = useDispatch();
   const trade = useSelector((state) => state.trade);
-  const checklist = useSelector((state) => state.checklist);
+  const checklist = useSelector((state) => state.trade.checklist);
   const [isAccordian1Open, setIsAccordian1Open] = useState(false);
   const [isAccordian2Open, setIsAccordian2Open] = useState(false);
   //   const getCurrentTime = () => {
@@ -24,10 +24,24 @@ export const TradeForm = () => {
   //     return `${hh}:${mm}`;
   //   };
 
+  const checklistUpdate = (event) => {
+    const { value, checked } = event.target;
+    let obj = {
+      ...checklist,
+      [value]: checked,
+    };
+
+    dispatch(updateTrade({ checklist: obj }));
+  };
+
+  const backTestUpdate = (event) => {
+    const { checked } = event.target;
+    dispatch(updateTrade({ backTest: checked }));
+  };
+
   useEffect(() => {
     console.log("*******", trade);
   }, [trade]);
-
 
   useEffect(() => {
     console.log("*******", checklist);
@@ -38,6 +52,7 @@ export const TradeForm = () => {
       setIsAccordian1Open(!isAccordian1Open);
       setIsAccordian2Open(false);
     } else if (accordianName === "Checklist") {
+      console.log("*******","Checklist")
       setIsAccordian2Open(!isAccordian2Open);
       setIsAccordian1Open(false);
     }
@@ -351,12 +366,9 @@ export const TradeForm = () => {
             )}
 
             <div className="flex items-center gap-2">
-              <TextField
-                type="checkbox"
-                checked={trade.backTest}
-                name="backTest"
+              <Checkbox
                 value={trade.backTest}
-                updateValue={inputChangeHandler}
+                onChange={backTestUpdate}
               />
               <h1>BackTest</h1>
             </div>
@@ -372,10 +384,7 @@ export const TradeForm = () => {
         >
           <div id="checklist-wrapper" className="flex flex-col gap-2 m-2">
             {checklistItems?.map((item) => (
-              <Checkbox
-                data={item}
-                onChange={handleCheckboxChange}
-              />
+              <Checkbox data={item} onChange={checklistUpdate} />
             ))}
           </div>
         </Accordian>
