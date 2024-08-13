@@ -32,7 +32,7 @@ const TextField = ({
 
   return (
     <div className="flex flex-col text-left justify-start m-1 ">
-       <label className="text-left text-gray-600 font-semibold" htmlFor={`${name}-select`}>{label}</label>
+       <label className="text-left text-[#4b5563] " htmlFor={`${name}-select`}>{label}</label>
       <input
         type={type}
         name={name}
@@ -44,7 +44,7 @@ const TextField = ({
         disabled={disabled}
         placeholder={placeholder}
         onChange={inputChangeHandler}
-        className="py-1 px-2 border border-2 border-gray-300 rounded-lg"
+        className="py-1 px-2 border border-1 rounded-lg text-[#4b5563]"
       />
       {children}
     </div>

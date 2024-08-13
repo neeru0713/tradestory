@@ -15,6 +15,8 @@ export const TradeForm = () => {
   const dispatch = useDispatch();
   const trade = useSelector((state) => state.trade);
   const checklist = useSelector((state) => state.trade.checklist);
+  const backTest = useSelector((state) => state.trade.backTest);
+
   const [isAccordian1Open, setIsAccordian1Open] = useState(false);
   const [isAccordian2Open, setIsAccordian2Open] = useState(false);
   //   const getCurrentTime = () => {
@@ -24,8 +26,7 @@ export const TradeForm = () => {
   //     return `${hh}:${mm}`;
   //   };
 
-  const checklistUpdate = (event) => {
-    const { value, checked } = event.target;
+  const checklistUpdate = (value, checked) => {
     let obj = {
       ...checklist,
       [value]: checked,
@@ -34,8 +35,7 @@ export const TradeForm = () => {
     dispatch(updateTrade({ checklist: obj }));
   };
 
-  const backTestUpdate = (event) => {
-    const { checked } = event.target;
+  const backTestUpdate = (checked) => {
     dispatch(updateTrade({ backTest: checked }));
   };
 
@@ -52,7 +52,7 @@ export const TradeForm = () => {
       setIsAccordian1Open(!isAccordian1Open);
       setIsAccordian2Open(false);
     } else if (accordianName === "Checklist") {
-      console.log("*******","Checklist")
+      console.log("*******", "Checklist");
       setIsAccordian2Open(!isAccordian2Open);
       setIsAccordian1Open(false);
     }
@@ -92,8 +92,6 @@ export const TradeForm = () => {
     dispatch(updateTrade(returnsVal));
   }, [trade.entryPrice, trade.exitPrice]);
 
-  
-  
   const inputChangeHandler = (name, value, type) => {
     let val = value;
     if (type === "number") {
@@ -109,24 +107,6 @@ export const TradeForm = () => {
 
     dispatch(updateTrade(obj));
   };
-
-
-  
-  
-  const handleCheckboxChange = (value, checked) => {
-    let updatedChecklistItems;
-
-    if (checked) {
-      updatedChecklistItems = [...trade?.checklistItems, value];
-    } else {
-      updatedChecklistItems = trade?.checklistItems.filter(
-        (item) => item !== value
-      );
-    }
-    dispatch(updateTrade({ checklistItems: updatedChecklistItems }));
-  };
-
-
 
   const checklistItems = [
     {
@@ -170,8 +150,6 @@ export const TradeForm = () => {
     { value: "OE", label: "Over Expectation" },
   ];
 
-
-
   const indexOptions = [
     {
       value: "N",
@@ -194,8 +172,6 @@ export const TradeForm = () => {
       label: "Sensex",
     },
   ];
-
-
 
   const riskRewardRatioOptions = [
     {
@@ -365,12 +341,15 @@ export const TradeForm = () => {
               />
             )}
 
-            <div className="flex items-center gap-2">
+            <div 
+             onClick={() =>
+              backTestUpdate(!backTest)
+            }
+            className="flex items-center gap-2">
               <Checkbox
-                value={trade.backTest}
-                onChange={backTestUpdate}
+                data={{ value: "backTest", label: "Back Test" }}
+                value={backTest}
               />
-              <h1>BackTest</h1>
             </div>
           </div>
         </Accordian>
@@ -384,7 +363,13 @@ export const TradeForm = () => {
         >
           <div id="checklist-wrapper" className="flex flex-col gap-2 m-2">
             {checklistItems?.map((item) => (
-              <Checkbox data={item} onChange={checklistUpdate} />
+              <div
+                onClick={() =>
+                  checklistUpdate(item.value, !checklist[item.value])
+                }
+              >
+                <Checkbox data={item} value={checklist[item.value]} />
+              </div>
             ))}
           </div>
         </Accordian>

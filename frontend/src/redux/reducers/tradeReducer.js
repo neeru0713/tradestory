@@ -58,8 +58,8 @@ checklistItems.forEach((item) =>{
 })
 
 const initialState = {
-  selectedTradeType: "N",
-  marketIndex: "",
+  selectedTradeType: "I",
+  marketIndex: "N",
   lotSize: 1,
   time: getCurrentTime(),
   date: getCurrentDate(),

@@ -20,7 +20,7 @@ const Selector = ({
 
   return (
     <div className="flex flex-col m-1 ">
-      <label className="text-left text-gray-600 font-semibold" htmlFor={`${name}-select`}>
+      <label className="text-left text-[#4b5563]" htmlFor={`${name}-select`}>
         {label}
       </label>
       <select
@@ -30,7 +30,7 @@ const Selector = ({
         value={value}
         style={styles}
         onChange={inputChangeHandler}
-        className="w-full py-1 px-2 border border-2 border-gray-300 rounded-lg"
+        className="w-full py-1 px-2 border border-1 rounded-lg text-[#4b5563]"
       >
         {options &&
           options.map((item, index) => (
