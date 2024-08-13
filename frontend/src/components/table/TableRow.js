@@ -13,7 +13,7 @@ const TableRow = ({ item }) => {
     S: "Sensex",
   };
   return (
-    <tr className="w-full flex p-2">
+    <tr className="w-full flex p-2 text-sm">
       <td className="">{marketIndexMap[item.marketIndex]}</td>
       <td className="">{item.lotSize}</td>
       <td className="">{item.time}</td>

@@ -3,9 +3,9 @@ import TableRow from "./TableRow";
 
 const Table = ({ data }) => {
   return (
-    <table className="table-Wrapper border rounded-lg">
+    <table className="table-Wrapper border rounded-lg cursor-pointer">
       <thead className="text-[#1a1b25] text-sm">
-        <tr className="w-full flex p-2">
+        <tr className="w-full flex p-2 text-sm">
           <th className="">MARKET INDEX</th>
           <th className="">LOT SIZE</th>
           <th className="">TIME</th>
@@ -20,7 +20,7 @@ const Table = ({ data }) => {
       <hr />
       <tbody>
         {data?.map((item) => (
-          <div>
+          <div className="hover:bg-[#f4f7f9]">
             <TableRow item={item} />
             <hr/>
           </div>
