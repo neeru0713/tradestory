@@ -2,3 +2,4 @@ export const UPDATE_TRADE = 'UPDATE_TRADE';
 export const CREATE_TRADE = 'CREATE_TRADE';
 export const CREATE_TRADE_SUCCESS = 'CREATE_TRADE_SUCCESS';
  export const CREATE_TRADE_FAIL = 'CREATE_TRADE_FAIL';
+ export const GET_TRADES = 'GET_TRADES';

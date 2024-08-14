@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { RiDeleteBinLine } from "react-icons/ri";
+
 import {
   IoIosCheckmarkCircleOutline,
   IoIosCloseCircleOutline,
@@ -12,6 +14,7 @@ const TableRow = ({ item }) => {
     MN: "Midcap Nifty",
     S: "Sensex",
   };
+
   return (
     <tr className="w-full flex p-2 text-sm">
       <td className="">{marketIndexMap[item.marketIndex]}</td>
@@ -24,13 +27,15 @@ const TableRow = ({ item }) => {
       <td className="">{item.riskRewardRatio}</td>
       <td className="">
         <div className="flex justify-center items-center">
-        {item.backTest === true ? (
-          <IoIosCheckmarkCircleOutline className="text-[#3da40b]" />
-        ) : (
-          <IoIosCloseCircleOutline className="text-[#a33e0b]" />
-        )}
+          {item.backTest === true ? (
+            <IoIosCheckmarkCircleOutline className="text-[#3da40b]" />
+          ) : (
+            <IoIosCloseCircleOutline className="text-[#a33e0b]" />
+          )}
         </div>
-       
+      </td>
+      <td>
+        <RiDeleteBinLine />
       </td>
     </tr>
   );

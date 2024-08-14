@@ -4,26 +4,21 @@ import { TradeForm } from "./TradeForm";
 import { TradeSelection } from "./TradeSelection";
 import Modal from "../modal/Modal";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
 import Table from "../table/Table";
+import { useSelector, useDispatch } from "react-redux";
+import { getTrades } from "../../redux/actions/tradeAction";
 
 const Trade = () => {
   const dispatch = useDispatch();
-  const trade = useSelector((state) => state.trade);
+  const tradeData = useSelector((state) => state.trade.tradeData);
   const [showModal, setShowModal] = useState(false);
-  const [data, setData] = useState([]);
+
   const clickPlusHandler = () => {
     setShowModal(true);
   };
 
-  async function getTrades() {
-    const response = await axios.get("http://localhost:8080/api/trade");
-    console.log(response.data);
-    setData(response.data.trades);
-  }
-
   useEffect(() => {
-    getTrades();
+    dispatch(getTrades());
   }, []);
 
   return (
@@ -39,7 +34,7 @@ const Trade = () => {
             <FiPlus className="font-semibold" />
           </div>
         </div>
-        <Table data={data} />
+        <Table tradeData={tradeData} />
       </div>
 
       <Modal

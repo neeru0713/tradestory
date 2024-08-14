@@ -3,6 +3,7 @@ import {
   CREATE_TRADE,
   CREATE_TRADE_SUCCESS,
   CREATE_TRADE_FAIL,
+  GET_TRADES,
 } from "../types";
 import axios from "axios";
 
@@ -15,7 +16,11 @@ export const updateTrade = (trade) => async (dispatch) => {
 export const createTrade = () => async (dispatch, getState) => {
   try {
     const { trade } = getState();
-
     const res = await axios.post("http://localhost:8080/api/trade", trade);
   } catch (error) {}
 };
+
+export const getTrades = ()  => async (dispatch) => {
+  const res = await axios.get("http://localhost:8080/api/trade");
+  dispatch({ type: GET_TRADES, payload: res.data.trades}); 
+}

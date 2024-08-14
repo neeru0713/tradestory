@@ -1,8 +1,10 @@
+import { getTrades } from "../actions/tradeAction";
 import {
   UPDATE_TRADE,
   CREATE_TRADE,
   CREATE_TRADE_SUCCESS,
   CREATE_TRADE_FAIL,
+  GET_TRADES,
 } from "../types";
 
 const checklistItems = [
@@ -51,11 +53,11 @@ const getCurrentTime = () => {
   return `${hh}:${mm}`;
 };
 
-let initialChecklist = {}
+let initialChecklist = {};
 
-checklistItems.forEach((item) =>{
-  initialChecklist = {...initialChecklist, [item.value] : false}
-})
+checklistItems.forEach((item) => {
+  initialChecklist = { ...initialChecklist, [item.value]: false };
+});
 
 const initialState = {
   selectedTradeType: "I",
@@ -71,6 +73,7 @@ const initialState = {
   mistakeTypeValue: "",
   tradeType: "",
   checklist: initialChecklist,
+  tradeData: [],
 };
 
 const tradeReducer = (state = initialState, action) => {
@@ -112,15 +115,23 @@ const tradeReducer = (state = initialState, action) => {
           : state.checklist,
       };
 
+    case GET_TRADES:
+      return {
+        ...state,
+        tradeData: action.payload
+      };
+
     case CREATE_TRADE_SUCCESS:
       return {
-        trade: action.payload?.trade ? [...action.payload?.trade] : [],
-        createTrade: action.payload?.trade
-          ? action.payload?.trade
-          : state.createTrade,
+        ...state,
+        tradeData: action.payload.trade
+          ? [...action.payload.trade]
+          : state.tradeData,
       };
+
     case CREATE_TRADE_FAIL:
       return state;
+
     default:
       return state;
   }
