@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { deleteTrade } from "../../redux/actions/tradeAction";
 
 import {
   IoIosCheckmarkCircleOutline,
@@ -7,6 +9,7 @@ import {
 } from "react-icons/io";
 
 const TableRow = ({ item }) => {
+  const dispatch = useDispatch();
   const marketIndexMap = {
     N: "Nifty 50",
     NB: "Nifty Bank",
@@ -35,7 +38,7 @@ const TableRow = ({ item }) => {
         </div>
       </td>
       <td>
-        <RiDeleteBinLine />
+        <RiDeleteBinLine onClick={() => dispatch(deleteTrade(item._id))} />
       </td>
     </tr>
   );

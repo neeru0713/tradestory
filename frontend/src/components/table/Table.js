@@ -22,9 +22,9 @@ const Table = ({ tradeData }) => {
       </thead>
       <hr />
       <tbody>
-        {tradeData?.map((item) => (
+        {tradeData?.map((item,index) => (
           <div className="hover:bg-[#f4f7f9]">
-            <TableRow item={item} />
+            <TableRow item={item} key={index}/>
             <hr/>
           </div>
         ))}

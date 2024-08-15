@@ -45,8 +45,9 @@ const Trade = () => {
         height={800}
         width={600}
       >
+         <TradeForm />
         <TradeSelection />
-        <TradeForm />
+       
       </Modal>
     </div>
   );

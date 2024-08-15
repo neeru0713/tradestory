@@ -5,6 +5,7 @@ import {
   CREATE_TRADE_SUCCESS,
   CREATE_TRADE_FAIL,
   GET_TRADES,
+  DELETE_TRADE_SUCCESS,
 } from "../types";
 
 const checklistItems = [
@@ -120,6 +121,12 @@ const tradeReducer = (state = initialState, action) => {
         ...state,
         tradeData: action.payload
       };
+
+      case DELETE_TRADE_SUCCESS:
+        return {
+          ...state,
+          tradeData: action.payload
+        }
 
     case CREATE_TRADE_SUCCESS:
       return {

@@ -4,6 +4,7 @@ import {
   CREATE_TRADE_SUCCESS,
   CREATE_TRADE_FAIL,
   GET_TRADES,
+  DELETE_TRADE_SUCCESS,
 } from "../types";
 import axios from "axios";
 
@@ -23,4 +24,9 @@ export const createTrade = () => async (dispatch, getState) => {
 export const getTrades = ()  => async (dispatch) => {
   const res = await axios.get("http://localhost:8080/api/trade");
   dispatch({ type: GET_TRADES, payload: res.data.trades}); 
+}
+
+export const deleteTrade = (id) => async (dispatch) => {
+  const res = await axios.delete(`http://localhost:8080/api/trade/${id}`);
+  dispatch({ type: DELETE_TRADE_SUCCESS, payload: res.data.trades}); 
 }
