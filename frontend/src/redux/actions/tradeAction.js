@@ -5,6 +5,7 @@ import {
   CREATE_TRADE_FAIL,
   GET_TRADES,
   DELETE_TRADE_SUCCESS,
+  DELETE_TRADE_FAIL
 } from "../types";
 import axios from "axios";
 
@@ -27,6 +28,15 @@ export const getTrades = ()  => async (dispatch) => {
 }
 
 export const deleteTrade = (id) => async (dispatch) => {
-  const res = await axios.delete(`http://localhost:8080/api/trade/${id}`);
-  dispatch({ type: DELETE_TRADE_SUCCESS, payload: res.data.trades}); 
+  try{
+    const res = await axios.delete(`http://localhost:8080/api/trade/${id}`);
+    dispatch({ type: DELETE_TRADE_SUCCESS, payload: res.data.trades}); 
+  }
+  catch (error) {
+    console.error(error);
+    dispatch({
+      type: DELETE_TRADE_FAIL,
+      payload: error.response ? error.response.data : "An Error occured",
+    });
+  }
 }
