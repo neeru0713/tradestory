@@ -120,19 +120,17 @@ const tradeReducer = (state = initialState, action) => {
     case GET_TRADES:
       return {
         ...state,
-        tradeData: action.payload
+        tradeData: action.payload,
       };
 
-      case DELETE_TRADE_SUCCESS:
-        return {
-          ...state,
-          tradeData: action.payload
-        }
+    case DELETE_TRADE_SUCCESS:
+      return {
+        ...state,
+        tradeData: action.payload,
+      };
 
-        case DELETE_TRADE_FAIL:
-          return state; 
-
-          
+    case DELETE_TRADE_FAIL:
+      return state;
 
     case CREATE_TRADE_SUCCESS:
       return {

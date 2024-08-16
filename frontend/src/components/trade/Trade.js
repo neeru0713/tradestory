@@ -7,14 +7,14 @@ import axios from "axios";
 import Table from "../table/Table";
 import { useSelector, useDispatch } from "react-redux";
 import { getTrades } from "../../redux/actions/tradeAction";
-
+import { openModal } from "../../redux/actions/modalAction";
 const Trade = () => {
   const dispatch = useDispatch();
   const tradeData = useSelector((state) => state.trade.tradeData);
-  const [showModal, setShowModal] = useState(false);
+  // const isOpenModal = useSelector((state) => state.isOpenModal.modal);
 
   const clickPlusHandler = () => {
-    setShowModal(true);
+    dispatch(openModal());
   };
 
   useEffect(() => {
@@ -37,17 +37,9 @@ const Trade = () => {
         <Table tradeData={tradeData} />
       </div>
 
-      <Modal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        title="New Trade"
-        numberOfPages={2}
-        height={800}
-        width={600}
-      >
-         <TradeForm />
+      <Modal title="New Trade" numberOfPages={2} height={800} width={600}>
+        <TradeForm />
         <TradeSelection />
-       
       </Modal>
     </div>
   );

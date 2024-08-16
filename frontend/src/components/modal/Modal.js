@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from "react";
-
 import { RxCross2 } from "react-icons/rx";
 import Button from "../form/button/Button";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { createTrade } from "../../redux/actions/tradeAction";
+import { closeModal } from "../../redux/actions/modalAction";
 
-const Modal = ({
-  showModal,
-  setShowModal,
-  title,
-  children,
-  numberOfPages,
-  height,
-  width,
-}) => {
+const Modal = ({ title, children, numberOfPages, height, width }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
   const trade = useSelector((state) => state.trade);
-  const crossHandler = () => {
-    setShowModal(false);
-  };
+  const isOpen = useSelector((state) => state.modal.isOpen);
 
+  const crossHandler = () => {
+    dispatch(closeModal());
+  };
 
   const styles = {
     height: height + "px",
@@ -32,16 +25,12 @@ const Modal = ({
     return childrenArray[pageNumber - 1];
   };
 
-
-  const handleSubmit =  () => {
-      dispatch(createTrade());
-  
-    }
-    
-  
+  const handleSubmit = () => {
+    dispatch(createTrade());
+  };
 
   return (
-    showModal && (
+    isOpen && (
       <div className="fixed inset-0 z-50 flex items-center justify-center">
         <div className="fixed inset-0 bg-gray-100 opacity-80"></div>
         <div
