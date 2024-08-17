@@ -102,7 +102,7 @@ export const TradeForm = () => {
       }
     }
     let obj = {
-      [name]: value,
+      [name]: val,
     };
 
     dispatch(updateTrade(obj));
@@ -259,7 +259,7 @@ export const TradeForm = () => {
         <hr className="w-full border" />
       </div> */}
 
-      <div className="border rounded-lg mt-4">
+      <div className="mt-4 border rounded-lg">
         <Accordian
           name="BasicInfo"
           isOpen={isAccordian1Open}
@@ -267,7 +267,7 @@ export const TradeForm = () => {
           title="Basic Info"
           icon={<FaInfoCircle />}
         >
-          <div className="basic-info-wrapper h-[400px] flex flex-col overflow-scroll p-4 gap-2">
+          <div className="basic-info-wrapper h-[400px] flex flex-col overflow-scroll p-4 gap-2 rounded-lg ">
             <Selector
               type="text"
               name="marketIndex"
@@ -341,11 +341,10 @@ export const TradeForm = () => {
               />
             )}
 
-            <div 
-             onClick={() =>
-              backTestUpdate(!backTest)
-            }
-            className="flex items-center gap-2">
+            <div
+              onClick={() => backTestUpdate(!backTest)}
+              className="flex items-center gap-2"
+            >
               <Checkbox
                 data={{ value: "backTest", label: "Back Test" }}
                 value={backTest}
@@ -364,6 +363,7 @@ export const TradeForm = () => {
           <div id="checklist-wrapper" className="flex flex-col gap-2 m-2">
             {checklistItems?.map((item) => (
               <div
+                key={item.value}
                 onClick={() =>
                   checklistUpdate(item.value, !checklist[item.value])
                 }

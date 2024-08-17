@@ -11,7 +11,7 @@ import { openModal } from "../../redux/actions/modalAction";
 const Trade = () => {
   const dispatch = useDispatch();
   const tradeData = useSelector((state) => state.trade.tradeData);
-  // const isOpenModal = useSelector((state) => state.isOpenModal.modal);
+  // const isOpen = useSelector((state) => state.modal.isOpen);
 
   const clickPlusHandler = () => {
     dispatch(openModal());
@@ -38,8 +38,8 @@ const Trade = () => {
       </div>
 
       <Modal title="New Trade" numberOfPages={2} height={800} width={600}>
-        <TradeForm />
         <TradeSelection />
+        <TradeForm />
       </Modal>
     </div>
   );

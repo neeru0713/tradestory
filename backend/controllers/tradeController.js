@@ -26,16 +26,22 @@ const deleteTrade = async (req, res) => {
   let tradesAfterDeleting = await tradeService.deleteTrade(req.params.id);
 
   let resObj = {
-    trades: tradesAfterDeleting
-  }
+    trades: tradesAfterDeleting,
+  };
   res.status(200).json(resObj);
-}
+};
 
-
-
+const editTrade = async (req, res) => {
+  let tradesAfterEditing = await tradeService.editTrade(req.params.id, req.body);
+  let resObj = {
+    trades: tradesAfterEditing,
+  };
+  res.status(200).json(resObj);
+};
 
 module.exports = {
   createTrade,
   getTrades,
   deleteTrade,
+  editTrade,
 };

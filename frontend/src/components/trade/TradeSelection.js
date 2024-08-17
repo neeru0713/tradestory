@@ -52,10 +52,13 @@ export const TradeSelection = () => {
         <span className="text-[#473fc0] font-bold"> Style</span>
       </h1>
       {tradeTypes.map((tradeType) => (
-        <div onClick={() => handleSelectionChange(tradeType.value)} className="flex items-center gap-5 text-[#71757d] p-4 rounded-lg border">
+        <div
+        key={tradeType.value} 
+        onClick={() => handleSelectionChange(tradeType.value)} 
+        className="flex items-center gap-5 text-[#71757d] p-4 rounded-lg border">
           <input
             type="radio"
-            class="h-4 w-4"
+            className="h-4 w-4"
             value={tradeType.value}
             checked={trade.selectedTradeType === tradeType.value}
             onChange={() => handleSelectionChange(tradeType.value)}

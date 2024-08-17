@@ -10,10 +10,10 @@ function App() {
     <BrowserRouter>
       <Provider store={store}> 
       <div className="App flex h-screen">
-        <div className="w-[20%] h-full">
+        <div className="w-[15%] h-full">
           <SideNav />
         </div>
-        <div className="w-[80%]">
+        <div className="w-[85%]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/trade" element={<Trade />} />

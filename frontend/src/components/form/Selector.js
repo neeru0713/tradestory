@@ -30,7 +30,7 @@ const Selector = ({
         value={value}
         style={styles}
         onChange={inputChangeHandler}
-        className="w-full py-1 px-2 border border-1 rounded-lg text-[#4b5563]"
+        className="w-full py-[8px] px-2 border border-1 rounded-lg text-[#4b5563]"
       >
         {options &&
           options.map((item, index) => (

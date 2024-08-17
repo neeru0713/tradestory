@@ -1,11 +1,10 @@
 import React from "react";
 import TableRow from "./TableRow";
 
-
 const Table = ({ tradeData }) => {
   return (
     <table className="table-Wrapper border rounded-lg cursor-pointer">
-      <thead className="text-[#1a1b25] text-sm">
+      <thead className="text-[#1a1b25] text-sm border-b">
         <tr className="w-full flex p-2 text-sm">
           <th className="">MARKET INDEX</th>
           <th className="">LOT SIZE</th>
@@ -16,17 +15,14 @@ const Table = ({ tradeData }) => {
           <th className="">PNL</th>
           <th className="">R MULTIPLE</th>
           <th className="">BACK TEST</th>
-          <th className="">ACTION</th>
-          
+          <th className="">ACTIONS</th>
         </tr>
       </thead>
-      <hr />
+     
+
       <tbody>
-        {tradeData?.map((item,index) => (
-          <div className="hover:bg-[#f4f7f9]">
-            <TableRow item={item} key={index}/>
-            <hr/>
-          </div>
+        {tradeData?.map((item) => (
+          <TableRow item={item} key={item._id} />
         ))}
       </tbody>
     </table>

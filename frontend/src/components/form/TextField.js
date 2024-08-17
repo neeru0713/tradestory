@@ -44,7 +44,7 @@ const TextField = ({
         disabled={disabled}
         placeholder={placeholder}
         onChange={inputChangeHandler}
-        className="py-1 px-2 border border-1 rounded-lg text-[#4b5563]"
+        className="py-[8px] px-2 border border-1 rounded-lg text-[#4b5563]"
       />
       {children}
     </div>

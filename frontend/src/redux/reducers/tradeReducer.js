@@ -7,6 +7,9 @@ import {
   GET_TRADES,
   DELETE_TRADE_SUCCESS,
   DELETE_TRADE_FAIL,
+  EDIT_TRADE_SUCCESS,
+  EDIT_TRADE_FAIL,
+
 } from "../types";
 
 const checklistItems = [
@@ -115,6 +118,7 @@ const tradeReducer = (state = initialState, action) => {
         checklist: action.payload.checklist
           ? action.payload.checklist
           : state.checklist,
+          tradeData: state.tradeData
       };
 
     case GET_TRADES:
@@ -126,7 +130,7 @@ const tradeReducer = (state = initialState, action) => {
     case DELETE_TRADE_SUCCESS:
       return {
         ...state,
-        tradeData: action.payload,
+       
       };
 
     case DELETE_TRADE_FAIL:
@@ -142,6 +146,17 @@ const tradeReducer = (state = initialState, action) => {
 
     case CREATE_TRADE_FAIL:
       return state;
+
+
+
+      case EDIT_TRADE_SUCCESS:
+        return {
+          ...state,
+          tradeData: action.payload,
+        }
+
+        case EDIT_TRADE_FAIL:
+          return state
 
     default:
       return state;

@@ -20,8 +20,20 @@ async function deleteTrade(id) {
   return tradesAfterDeleting;
 }
 
+  
+async function editTrade(id,body) {
+  const tradeToBeEdited = await Trade.findOne({_id: id});
+  console.log(tradeToBeEdited, body)
+  if (tradeToBeEdited) {
+    await Trade.updateOne({ _id: id }, body);
+  }
+  const tradesAfterEditing = await Trade.find({});
+  return tradesAfterEditing;
+}
+
 module.exports = {
   createTrade,
   getTrades,
   deleteTrade,
+  editTrade,
 };
