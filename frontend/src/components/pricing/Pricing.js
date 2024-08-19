@@ -4,8 +4,10 @@ import {
   IoIosCloseCircleOutline,
 } from "react-icons/io";
 import "./Pricing.css";
-
+import { useDispatch } from "react-redux";
+import { pay } from "../../redux/actions/paymentAction";
 const Pricing = () => {
+    const dispatch = useDispatch();
   const plans = [
     {
       name: "Basic",
@@ -115,6 +117,7 @@ const Pricing = () => {
               </ul>
             </div>
             <button
+              onClick={() => {dispatch(pay(plan))}}
               className={`text-white py-3 px-4 rounded-lg  ${plan.color}`}
             >
               Choose {plan.name}

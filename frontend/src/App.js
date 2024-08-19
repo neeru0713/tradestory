@@ -2,9 +2,10 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import SideNav from "./components/nav/SideNav";
-import Pricing  from "./components/pricing/Pricing";
+import Pricing from "./components/pricing/Pricing";
 import { Register } from "./components/auth/Register";
 import { Login } from "./components/auth/Login";
+import Payment from "./components/payment/payment";
 import { Spinner } from "./components/utils/spinner/Spinner";
 import { Notification } from "./components/utils/notification/Notification";
 import Trade from "./components/trade/Trade";
@@ -15,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <div className="app-wrapper">
-          <Notification/>
+          <Notification />
           <Spinner />
         </div>
         <div className="App flex h-screen">
@@ -26,8 +27,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/trade" element={<Trade />} />
+              <Route path="/success" element={<Payment />} />
               <Route path="/pricing" element={<Pricing />} />
             </Routes>
           </div>

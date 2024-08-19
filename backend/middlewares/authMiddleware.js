@@ -2,6 +2,12 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const ApiError = require("../utils/ApiError");
 const httpStatus = require("http-status");
+const dotenv = require("dotenv");
+const path = require("path");
+
+const envFile =
+  process.env.NODE_ENV === "production" ? ".env.production" : ".env";
+dotenv.config({ path: path.resolve(__dirname, "../../", envFile) });
 
 const authMiddleware = async (req, res, next) => {
   try {

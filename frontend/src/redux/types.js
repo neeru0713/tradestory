@@ -4,7 +4,6 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 
-
 export const UPDATE_TRADE = "UPDATE_TRADE";
 export const CREATE_TRADE = "CREATE_TRADE";
 export const CREATE_TRADE_SUCCESS = "CREATE_TRADE_SUCCESS";
@@ -23,3 +22,5 @@ export const HIDE_SPINNER = 'HIDE_SPINNER';
 
 export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
 export const CLOSE_NOTIFICATION = 'CLOSE_NOTIFICATION';
+
+export const PAY_NOW = 'PAY_NOW'

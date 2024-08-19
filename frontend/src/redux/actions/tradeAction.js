@@ -41,7 +41,7 @@ export const getTrades = () => async (dispatch) => {
     dispatch(hideSpinner());
     
     dispatch({ type: GET_TRADES, payload: res.data.trades });
-    dispatch(showNotification({ type: 'success', message: 'Trades fetched successfully', sticky: false }));
+    // dispatch(showNotification({ type: 'success', message: 'Trades fetched successfully', sticky: false }));
   } catch (error) {
     dispatch(hideSpinner());
     dispatch(showNotification({ type: 'error', message: 'An error occurred while fetching the trades', sticky: false }));

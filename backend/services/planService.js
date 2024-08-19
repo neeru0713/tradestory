@@ -1,6 +1,7 @@
 const User = require("../models/User.js");
 const httpStatus = require("http-status");
 const ApiError = require("../utils/ApiError");
+const Plan = require("../models/Plan.js")
 
 async function addPlanToUser(body, userId) {
   try {
@@ -8,8 +9,8 @@ async function addPlanToUser(body, userId) {
     if (!user) {
       throw new ApiError(httpStatus.NOT_FOUND, "User not found");
     }
-    const plans = body.data;
-    user.plans.push(...plans?.map((plan) => plan._id));
+    const newPlan = new Plan(body); 
+    user.plans.push(newPlan);
     await user.save();
   } catch (error) {
     throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error.message);
