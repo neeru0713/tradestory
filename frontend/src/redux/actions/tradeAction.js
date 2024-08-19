@@ -9,6 +9,7 @@ import {
   EDIT_TRADE_SUCCESS,
   EDIT_TRADE_FAIL,
 } from "../types";
+import { API_URL } from "../../config/config";
 import { showSpinner, hideSpinner } from "./spinnerAction";
 import { showNotification } from "./notificationAction";
 import { closeModal } from "./modalAction";
@@ -22,7 +23,7 @@ export const createTrade = () => async (dispatch, getState) => {
   try {
     const { trade } = getState();
     dispatch(showSpinner("Trade is being created ..."));
-    const res = await axios.post("http://localhost:8080/api/trade", trade);
+    const res = await axios.post(`${API_URL}/api/trade`, trade);
     dispatch(hideSpinner());
     dispatch(showNotification({type: 'success', message: "Trade created successfully", sticky: false}));
     dispatch(closeModal())
@@ -36,7 +37,7 @@ export const createTrade = () => async (dispatch, getState) => {
 export const getTrades = () => async (dispatch) => {
   try {
     dispatch(showSpinner("Fetching trades ..."));
-    const res = await axios.get("http://localhost:8080/api/trade");
+    const res = await axios.get(`${API_URL}/api/trade`);
     dispatch(hideSpinner());
     
     dispatch({ type: GET_TRADES, payload: res.data.trades });
@@ -50,7 +51,7 @@ export const getTrades = () => async (dispatch) => {
 export const deleteTrade = (id) => async (dispatch) => {
   try {
     dispatch(showSpinner("Trade is getting deleted ..."));
-    const res = await axios.delete(`http://localhost:8080/api/trade/${id}`);
+    const res = await axios.delete(`${API_URL}/api/trade${id}`);
     dispatch(hideSpinner());
     dispatch({ type: DELETE_TRADE_SUCCESS, payload: res.data.trades });
     dispatch(showNotification({ type: 'success', message: 'Trade deleted successfully', sticky: false }));
@@ -70,7 +71,7 @@ export const editTrade = (id) => async (dispatch, getState) => {
     dispatch(showSpinner("Trade is getting updated ..."));
     const tradeData = getState().trade;
     const res = await axios.put(
-      `http://localhost:8080/api/trade/${id}`,
+      `${API_URL}/api/trade${id}`,
       tradeData
     );
     dispatch({ type: EDIT_TRADE_SUCCESS, payload: res.data.trades });
