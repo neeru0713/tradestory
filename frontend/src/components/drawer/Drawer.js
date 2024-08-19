@@ -8,6 +8,7 @@ const Drawer = ({ isOpen, onClose, tradeId, children }) => {
 
   const handleSubmit = () => {
     dispatch(editTrade(tradeId));
+    onClose();
   };
 
   return (

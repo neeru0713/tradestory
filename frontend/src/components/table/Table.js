@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TableRow from "./TableRow";
 
 const Table = ({ tradeData }) => {
   const [sortedData, setSortedData] = useState(tradeData);
   const [sortOrder, setSortOrder] = useState("asc");
+
+  useEffect(()=>{
+    sortPNL()
+    setSortedData(tradeData)
+  }, [tradeData])
 
   const sortPNL = () => {
     const sorted = [...sortedData].sort((a, b) => {

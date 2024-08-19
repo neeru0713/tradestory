@@ -3,7 +3,6 @@ import { FiPlus } from "react-icons/fi";
 import { TradeForm } from "./TradeForm";
 import { TradeSelection } from "./TradeSelection";
 import Modal from "../modal/Modal";
-import axios from "axios";
 import Table from "../table/Table";
 import { useSelector, useDispatch } from "react-redux";
 import { getTrades } from "../../redux/actions/tradeAction";
