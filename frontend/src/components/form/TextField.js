@@ -15,6 +15,7 @@ const TextField = ({
   children,
   width,
   checkBoxWeight,
+  error,
   checkBoxHeight
 }) => {
   let styles = {
@@ -47,6 +48,11 @@ const TextField = ({
         className="py-[8px] px-2 border border-1 rounded-lg text-[#4b5563]"
       />
       {children}
+      {error && (
+          <p className="text-red-500 text-xs" style={{ width: `${width}px` }}>
+            {error}
+          </p>
+        )}
     </div>
   );
 };

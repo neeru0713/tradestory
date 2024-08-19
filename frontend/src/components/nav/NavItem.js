@@ -6,7 +6,7 @@ const NavItem = ({ icon, name, routePath }) => {
     <li className="flex items-center gap-4 ">
       <div className="text-[#6c7688] text-lg">{icon}</div>
       <p className="text-md text-[#414552]">
-        <Link to={routePath}>{name}</Link>
+        <Link to={routePath} className="hover:text-[#7743ea]">{name}</Link>
       </p>
     </li>
   );

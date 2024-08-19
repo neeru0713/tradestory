@@ -1,4 +1,4 @@
-const { Trade } = require("../modal/Trade.js");
+const { Trade } = require("../models/Trade.js");
 
 async function createTrade(tradeBody) {
   let newTrade = new Trade(tradeBody);

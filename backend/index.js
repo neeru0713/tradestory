@@ -6,14 +6,19 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
 const envFile = ".env";
+const authRoutes = require("./routes/authRoutes.js")
 const tradeRoutes = require("./routes/tradeRoutes.js");
-
+const paymentRoutes = require("./routes/paymentRoutes.js");
+const httpStatus = require("http-status");
+const { errorHandler } = require("./middlewares/error");
 dotenv.config({ path: path.resolve(__dirname, '..', envFile) });
-
+const ApiError = require("./utils/ApiError");
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+app.use("/api/auth/", authRoutes);
 app.use("/api/trade", tradeRoutes);
+app.use("/api/payment/", paymentRoutes);
 
 const mongoUrl = process.env.MONGODB_URL;
 
@@ -44,6 +49,13 @@ app.get("/health-check", async (req, res) => {
     res.status(500).json({ message: "service down", error: error.message });
   }
 });
+
+app.use((req, res, next) => {
+  next(new ApiError(httpStatus.NOT_FOUND, "Not found"));
+});
+
+app.use(errorHandler);
+
 
 const port = process.env.PORT || 8080; 
 app.listen(port, () => {
