@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import SideNav from "./components/nav/SideNav";
+import Pricing  from "./components/pricing/Pricing";
 import { Spinner } from "./components/utils/spinner/Spinner";
 import { Notification } from "./components/utils/notification/Notification";
 import Trade from "./components/trade/Trade";
@@ -23,6 +24,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/trade" element={<Trade />} />
+              <Route path="/pricing" element={<Pricing />} />
             </Routes>
           </div>
         </div>
