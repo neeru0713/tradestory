@@ -4,7 +4,6 @@ const catchAsync = require("../utils/catchAsync");
 const httpStatus = require("http-status");
 
 const register = catchAsync(async (req, res) => {
-    console.log("create user " , req.body)
   let newUser = await authService.createUser(req.body);
   const token = await tokenService.generateAuthTokens(newUser);
   let resObj = {

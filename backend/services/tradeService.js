@@ -23,7 +23,6 @@ async function deleteTrade(id) {
   
 async function editTrade(id,body) {
   const tradeToBeEdited = await Trade.findOne({_id: id});
-  console.log(tradeToBeEdited, body)
   if (tradeToBeEdited) {
     await Trade.updateOne({ _id: id }, body);
   }

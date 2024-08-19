@@ -5,7 +5,6 @@ const httpStatus = require("http-status");
 
 const checkout = catchAsync(async (req, res) => {
   const session = await paymentService.checkout(req.body);
-  console.log("Session : ", session)
   await planService.addPlanToUser(req.body, req.user._id);
   if (session) {
     res.status(httpStatus.OK).json({ url: session.url });

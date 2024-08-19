@@ -6,10 +6,6 @@ export const TradeSelection = () => {
   const dispatch = useDispatch();
   const trade = useSelector((state) => state.trade);
 
-  useEffect(() => {
-    console.log("*******", trade);
-  }, [trade]);
-
   const tradeTypes = [
     {
       label: "Interaday",

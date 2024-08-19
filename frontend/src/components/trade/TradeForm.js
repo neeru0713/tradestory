@@ -39,20 +39,11 @@ export const TradeForm = () => {
     dispatch(updateTrade({ backTest: checked }));
   };
 
-  useEffect(() => {
-    console.log("*******", trade);
-  }, [trade]);
-
-  useEffect(() => {
-    console.log("*******", checklist);
-  }, [checklist]);
-
   const handleAccordian = (accordianName) => {
     if (accordianName === "BasicInfo") {
       setIsAccordian1Open(!isAccordian1Open);
       setIsAccordian2Open(false);
     } else if (accordianName === "Checklist") {
-      console.log("*******", "Checklist");
       setIsAccordian2Open(!isAccordian2Open);
       setIsAccordian1Open(false);
     }
@@ -77,9 +68,6 @@ export const TradeForm = () => {
   //     mistakeTypeValue: "",
   //   });
 
-  //   useEffect(() => {
-  //     console.log("***** : ", tradeData);
-  //   }, [tradeData]);
 
   useEffect(() => {
     let pnl = trade.exitPrice - trade.entryPrice;
