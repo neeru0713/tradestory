@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
-import { updateTrade } from "../../redux/actions/tradeAction";
-
-import { deleteTrade } from "../../redux/actions/tradeAction";
+import { useDispatch } from "react-redux";
+import { updateTrade, deleteTrade } from "../../redux/actions/tradeAction";
 import { TradeForm } from "../trade/TradeForm";
 import Drawer from "../drawer/Drawer";
 import {
@@ -14,7 +12,7 @@ import {
 
 const TableRow = ({ item }) => {
   const dispatch = useDispatch();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const editClickHandler = () => {
     dispatch(updateTrade(item));
@@ -35,37 +33,37 @@ const TableRow = ({ item }) => {
 
   return (
     <>
-      <tr className="w-full flex p-2 text-sm hover:bg-[#f4f7f9] border-b">
-        <td className="">{marketIndexMap[item.marketIndex]}</td>
-        <td className="">{item.lotSize}</td>
-        <td className="">{item.time}</td>
-        <td className="">{item.date}</td>
-        <td className="">{item.entryPrice}</td>
-        <td className="">{item.exitPrice}</td>
-        <td className="">{item.pnl}</td>
-        <td className="">{item.riskRewardRatio}</td>
+      <tr className="w-full flex p-2 text-sm hover:bg-[#f4f7f9] dark:hover:bg-gray-700 border-b dark:border-gray-600">
+        <td className="text-black dark:text-white">{marketIndexMap[item.marketIndex]}</td>
+        <td className="text-black dark:text-white">{item.lotSize}</td>
+        <td className="text-black dark:text-white">{item.time}</td>
+        <td className="text-black dark:text-white">{item.date}</td>
+        <td className="text-black dark:text-white">{item.entryPrice}</td>
+        <td className="text-black dark:text-white">{item.exitPrice}</td>
+        <td className={`${item.pnl > 0 ? 'text-green-600' : 'text-red-600'} dark:text-green-400 dark:text-red-400`}>{item.pnl}</td>
+        <td className="text-black dark:text-white">{item.riskRewardRatio}</td>
         <td className="">
           <div className="flex justify-center items-center text-lg">
             {item.backTest === true ? (
-              <IoIosCheckmarkCircleOutline className="text-[#3da40b]" />
+              <IoIosCheckmarkCircleOutline className="text-[#3da40b] dark:text-green-500" />
             ) : (
-              <IoIosCloseCircleOutline className="text-[#a33e0b]" />
+              <IoIosCloseCircleOutline className="text-[#a33e0b] dark:text-red-500" />
             )}
           </div>
         </td>
         <td className="flex gap-5 items-center justify-center">
           <div
             onClick={() => dispatch(deleteTrade(item._id))}
-            className="rounded-md bg-[#f0f0f0] border hover:border-gray-50 hover:bg-gray-50 p-1 shadow-inner"
+            className="rounded-md bg-[#f0f0f0] dark:bg-gray-700 border hover:border-gray-400 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-600 p-1 shadow-inner"
           >
-            <IoTrashOutline />
+            <IoTrashOutline className="text-black dark:text-white" />
           </div>
 
           <div
             onClick={editClickHandler}
-            className="rounded-md bg-[#f0f0f0] p-1 shadow-inner"
+            className="rounded-md bg-[#f0f0f0] dark:bg-gray-700 p-1 shadow-inner border hover:border-gray-400 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-600"
           >
-            <FiEdit />
+            <FiEdit className="text-black dark:text-white" />
           </div>
         </td>
 

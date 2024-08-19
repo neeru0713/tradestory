@@ -34,7 +34,9 @@ const Trade = () => {
             <FiPlus className="font-semibold" />
           </div>
         </div>
-        <Table tradeData={tradeData} />
+        <div className="table-container max-h-[calc(100vh-150px)] overflow-y-scroll border-b">
+          <Table tradeData={tradeData} />
+        </div>
       </div>
 
       <Modal title="New Trade" numberOfPages={2} height={800} width={600}>
