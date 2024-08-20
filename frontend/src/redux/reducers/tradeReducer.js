@@ -106,9 +106,7 @@ const tradeReducer = (state = initialState, action) => {
           ? action.payload.exitPrice
           : state.exitPrice,
         pnl: action.payload.pnl ? action.payload.pnl : state.pnl,
-        backTest: action.payload.backTest
-          ? action.payload.backTest
-          : state.backTest,
+        backTest: action.payload.backTest,
         mistakeTypeValue: action.payload.mistakeTypeValue
           ? action.payload.mistakeTypeValue
           : state.mistakeTypeValue,

@@ -48,6 +48,15 @@ export const TradeForm = () => {
       setIsAccordian1Open(false);
     }
   };
+
+
+  const lotSizeMap = {
+    S: 10,
+    N: 25,
+    NB: 15,
+    FN: 25,
+    MN: 75,
+  };
   //   const getCurrentDate = () => {
   //     const today = new Date();
   //     const yyyy = today.getFullYear();
@@ -70,7 +79,7 @@ export const TradeForm = () => {
 
 
   useEffect(() => {
-    let pnl = trade.exitPrice - trade.entryPrice;
+    let pnl = lotSizeMap[trade.marketIndex] * trade.lotSize * (trade.exitPrice - trade.entryPrice);
     dispatch(updateTrade({ pnl: pnl }));
 
     let returnsVal =
