@@ -7,7 +7,7 @@ import { HiOutlineCurrencyRupee } from "react-icons/hi";
 const NavItems = () => {
   return (
     <ul className="flex flex-col gap-2">
-      <NavItem icon={<RiHome2Line />} name="Home" routePath="/" />
+      {/* <NavItem icon={<RiHome2Line />} name="Home" routePath="/" /> */}
       <NavItem icon={<IoCreateOutline />} name="Trade" routePath="/trade" />
       <NavItem
         icon={<HiOutlineCurrencyRupee />}
