@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import { logout } from "../../redux/actions/authActions";
+
 const SideNav = () => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
   return (
-    <div className="side-nav h-full border border-0 border-r p-12 flex flex-col gap-10 min-w-60">
+    <div className="side-nav h-full border border-0 border-r p-12 flex flex-col gap-10 ">
       <div className="flex items-center gap-4 justify-start">
         <SiShutterstock className="text-[#4039ad] flex-shrink-0" />
         <h1 className="text-[#4039ad] text-xl font-bold">Trade Story</h1>
@@ -23,7 +25,16 @@ const SideNav = () => {
                 <div>
                   <FaRegUserCircle className="h-6 w-6" />
                 </div>
-                <p className="font-semibold text-xl">{auth.user?.username}</p>
+                <div className="flex gap-4">
+                  <p className="font-semibold text-xl">
+                    {auth.user?.username}
+                  </p>
+                  {auth.planName && auth.planName.length && (
+                    <p className="text-sm text-white bg-[#4039ad] font-semibold rounded-lg px-2 py-1">
+                      {auth.planName}
+                    </p>
+                  )}
+                </div>
               </li>
 
               <li className="py-2">

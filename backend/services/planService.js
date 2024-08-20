@@ -9,9 +9,12 @@ async function addPlanToUser(body, userId) {
     if (!user) {
       throw new ApiError(httpStatus.NOT_FOUND, "User not found");
     }
+    
     const newPlan = new Plan(body); 
     user.plans.push(newPlan);
+    user.planName = body.name;
     await user.save();
+    return user.planName;
   } catch (error) {
     throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error.message);
   }

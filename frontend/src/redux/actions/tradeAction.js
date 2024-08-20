@@ -51,7 +51,7 @@ export const getTrades = () => async (dispatch) => {
 export const deleteTrade = (id) => async (dispatch) => {
   try {
     dispatch(showSpinner("Trade is getting deleted ..."));
-    const res = await axios.delete(`${API_URL}/api/trade${id}`);
+    const res = await axios.delete(`${API_URL}/api/trade/${id}`);
     dispatch(hideSpinner());
     dispatch({ type: DELETE_TRADE_SUCCESS, payload: res.data.trades });
     dispatch(showNotification({ type: 'success', message: 'Trade deleted successfully', sticky: false }));
@@ -71,7 +71,7 @@ export const editTrade = (id) => async (dispatch, getState) => {
     dispatch(showSpinner("Trade is getting updated ..."));
     const tradeData = getState().trade;
     const res = await axios.put(
-      `${API_URL}/api/trade${id}`,
+      `${API_URL}/api/trade/${id}`,
       tradeData
     );
     dispatch({ type: EDIT_TRADE_SUCCESS, payload: res.data.trades });

@@ -1,4 +1,3 @@
-import { PAY_NOW } from "../types";
 
 const initialState = {
   loading: false,

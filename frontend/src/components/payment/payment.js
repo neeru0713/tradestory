@@ -4,6 +4,7 @@ import axios from "axios";
 import { API_URL } from "../../config/config";
 import { hideSpinner, showSpinner } from "../../redux/actions/spinnerAction";
 import { showNotification } from "../../redux/actions/notificationAction";
+import {updateUserPlanName} from "../../redux/actions/authActions"
 import { useDispatch, useSelector } from "react-redux";
 const Payment = () => {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const Payment = () => {
           if (response.data.success) {
             dispatch(showNotification({type: 'success', message: "Payment verification successful", sticky: false}))
             navigate("/trade");
+            dispatch(updateUserPlanName(response.data.planName))
           } else {
             dispatch(showNotification({type: 'error', message: "Payment verification failed", sticky: false}))
             console.error("Payment verification failed");

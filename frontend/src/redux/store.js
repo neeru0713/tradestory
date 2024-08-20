@@ -17,12 +17,14 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 
 store.subscribe(() => {
   const state = store.getState();
-  if (state.auth.user && state.auth.token) {
+  if (state.auth.user && state.auth.token && state.auth.planName) {
     localStorage.setItem('user', JSON.stringify(state.auth.user));
     localStorage.setItem('token', state.auth.token);
+    localStorage.setItem('planName', state.auth.planName);
   } else {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    localStorage.removeItem('planName');
   }
 });
 
