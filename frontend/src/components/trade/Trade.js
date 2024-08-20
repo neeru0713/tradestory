@@ -38,7 +38,7 @@ const Trade = () => {
         </div>
       </div>
 
-      <Modal title="New Trade" numberOfPages={2} height={800} width={600}>
+      <Modal title="New Trade" numberOfPages={2} height={700} width={600}>
         <TradeSelection />
         <TradeForm />
       </Modal>

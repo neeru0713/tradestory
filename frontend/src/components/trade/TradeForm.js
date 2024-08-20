@@ -355,9 +355,9 @@ export const TradeForm = () => {
           isOpen={isAccordian2Open}
           onClick={handleAccordian}
           title="Checklist"
-          icon={<FaThList />}
+          icon={<FaThList />}pricing
         >
-          <div id="checklist-wrapper" className="flex flex-col gap-2 m-2">
+          <div id="checklist-wrapper" className="flex flex-col gap-2 m-2 h-[400px] overflow-y-scroll">
             {checklistItems?.map((item) => (
               <div
                 key={item.value}

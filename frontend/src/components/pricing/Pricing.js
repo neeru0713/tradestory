@@ -91,17 +91,17 @@ const Pricing = () => {
                 Recommended
               </div>
             )}
-            <div className="p-4">
-              <h2 className={`text-3xl font-bold mb-4 ${plan.textColor} `}>
+            <div className="p-1">
+              <h2 className={`text-2xl font-bold mb-2 ${plan.textColor} `}>
                 {plan.name}
               </h2>
-              <p className="text-3xl font-bold mb-4 text-gray-800 dark:text-gray-100">
+              <p className="text-2xl font-bold mb-2 text-gray-800 dark:text-gray-100">
                 {plan.price}
               </p>
-              <p className="text-lg mb-6 font-semibold text-gray-700 dark:text-gray-200">
+              <p className="text-md mb-2 font-semibold text-gray-700 dark:text-gray-200">
                 {plan.description}
               </p>
-              <ul className="mb-6 text-gray-600 dark:text-gray-100 pt-6">
+              <ul className="text-gray-600 dark:text-gray-100">
                 {plan.features.allowed.map((feature, i) => (
                   <li key={i} className="flex items-center mb-2">
                     <IoIosCheckmarkCircleOutline className="text-green-500 mr-2" />
