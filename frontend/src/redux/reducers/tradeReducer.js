@@ -71,11 +71,12 @@ const initialState = {
   time: getCurrentTime(),
   date: getCurrentDate(),
   riskRewardRatio: "1",
-  entryPrice: 0,
-  exitPrice: 0,
+  entryPrice: null,
+  exitPrice: null,
   pnl: 0,
+  returns: 0,
   backTest: false,
-  mistakeTypeValue: "",
+  mistakeType: "",
   tradeType: "",
   checklist: initialChecklist,
   tradeData: [],
@@ -106,10 +107,11 @@ const tradeReducer = (state = initialState, action) => {
           ? action.payload.exitPrice
           : state.exitPrice,
         pnl: action.payload.pnl ? action.payload.pnl : state.pnl,
-        backTest: action.payload.backTest,
-        mistakeTypeValue: action.payload.mistakeTypeValue
-          ? action.payload.mistakeTypeValue
-          : state.mistakeTypeValue,
+        returns: action.payload.returns ? action.payload.returns : state.returns,
+        backTest: action.payload.backTest ? action.payload.backTest : state.backTest,
+        mistakeType: action.payload.mistakeType
+          ? action.payload.mistakeType
+          : state.mistakeType,
         tradeType: action.payload.tradeType
           ? action.payload.tradeType
           : state.tradeType,

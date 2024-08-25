@@ -34,8 +34,10 @@ const Table = ({ tradeData }) => {
           <th className="">ENTRY PRICE</th>
           <th className="">EXIT PRICE</th>
           <th className="cursor-pointer" onClick={sortPNL}>
-            PNL {sortOrder === "asc" ? "↑" : "↓"}
+            PNL {sortOrder === "asc" ? "↓" : "↑"}
           </th>
+          <th className="">RETURNS </th>
+          <th className="">MISTAKE TYPE </th>
           <th className="">R MULTIPLE</th>
           <th className="">BACK TEST</th>
           <th className="">ACTIONS</th>

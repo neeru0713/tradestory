@@ -16,7 +16,7 @@ const TextField = ({
   width,
   checkBoxWeight,
   error,
-  checkBoxHeight
+  checkBoxHeight,
 }) => {
   let styles = {
     color: color,
@@ -24,7 +24,11 @@ const TextField = ({
   };
 
   if (type === "checkbox") {
-    styles = { ...styles, height: `${checkBoxHeight}rem`, width: `${checkBoxWeight}rem`};
+    styles = {
+      ...styles,
+      height: `${checkBoxHeight}rem`,
+      width: `${checkBoxWeight}rem`,
+    };
   }
 
   const inputChangeHandler = (event) => {
@@ -33,8 +37,11 @@ const TextField = ({
 
   return (
     <div className="flex flex-col text-left justify-start m-1 ">
-       <label className="text-left text-[#4b5563] " htmlFor={`${name}-select`}>{label}</label>
+      <label className="text-left text-[#4b5563] " htmlFor={`${name}-select`}>
+        {label}
+      </label>
       <input
+        onWheel={(e) => e.target.blur()}
         type={type}
         name={name}
         value={value}
@@ -49,10 +56,10 @@ const TextField = ({
       />
       {children}
       {error && (
-          <p className="text-red-500 text-xs" style={{ width: `${width}px` }}>
-            {error}
-          </p>
-        )}
+        <p className="text-red-500 text-xs" style={{ width: `${width}px` }}>
+          {error}
+        </p>
+      )}
     </div>
   );
 };

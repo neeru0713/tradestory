@@ -49,7 +49,6 @@ export const TradeForm = () => {
     }
   };
 
-
   const lotSizeMap = {
     S: 10,
     N: 25,
@@ -77,17 +76,19 @@ export const TradeForm = () => {
   //     mistakeTypeValue: "",
   //   });
 
-
   useEffect(() => {
-    let pnl = lotSizeMap[trade.marketIndex] * trade.lotSize * (trade.exitPrice - trade.entryPrice);
+    let pnl =
+      lotSizeMap[trade.marketIndex] *
+      trade.lotSize *
+      (trade.exitPrice - trade.entryPrice);
     dispatch(updateTrade({ pnl: pnl }));
 
     let returnsVal =
       trade.entryPrice > 0
         ? ((trade.exitPrice - trade.entryPrice) / trade.entryPrice) * 100
         : 0;
-    dispatch(updateTrade(returnsVal));
-  }, [trade.entryPrice, trade.exitPrice]);
+    dispatch(updateTrade({ returns: returnsVal }));
+  }, [trade.entryPrice, trade.exitPrice, trade.lotSize]);
 
   const inputChangeHandler = (name, value, type) => {
     let val = value;
@@ -311,6 +312,13 @@ export const TradeForm = () => {
                 updateValue={inputChangeHandler}
                 label="Exit Price"
               />
+              <div
+                className={` p-2 rounded-lg text-white ${
+                  trade.returns >= 0 ? "bg-green-600" : "bg-red-600"
+                }`}
+              >
+                {trade.returns.toFixed(1)}%
+              </div>
             </div>
             <TextField
               type="number"
@@ -320,6 +328,15 @@ export const TradeForm = () => {
               updateValue={inputChangeHandler}
               label="P&L Value"
             />
+            {trade.pnl < 0 && (
+              <Selector
+                name="mistakeType"
+                value={trade.mistakeType}
+                updateValue={inputChangeHandler}
+                label="Mistake Type Values"
+                options={mistakeTypeValuesOptions}
+              />
+            )}
 
             <Selector
               name="riskRewardRatio"
@@ -355,9 +372,13 @@ export const TradeForm = () => {
           isOpen={isAccordian2Open}
           onClick={handleAccordian}
           title="Checklist"
-          icon={<FaThList />}pricing
+          icon={<FaThList />}
+          pricing
         >
-          <div id="checklist-wrapper" className="flex flex-col gap-2 m-2 h-[400px] overflow-y-scroll">
+          <div
+            id="checklist-wrapper"
+            className="flex flex-col gap-2 m-2 h-[400px] overflow-y-scroll"
+          >
             {checklistItems?.map((item) => (
               <div
                 key={item.value}

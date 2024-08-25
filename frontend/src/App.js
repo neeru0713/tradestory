@@ -25,7 +25,7 @@ function App() {
           </div>
           <div className="w-[85%]">
             <Routes>
-              <Route path="/" element={<Trade />} />
+              <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/trade" element={<Trade />} />

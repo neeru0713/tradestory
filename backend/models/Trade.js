@@ -8,6 +8,7 @@ const indexOptions = [
 ];
 
 const mistakeTypeValuesOptions = [
+  { value: "", label: ""},
   { value: 'BP', label: 'Bad Psychology' },
   { value: 'F', label: 'FOMO' },
   { value: 'RCE', label: 'Running Candle Entry' },

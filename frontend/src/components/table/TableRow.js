@@ -46,6 +46,17 @@ const TableRow = ({ item }) => {
     S: "Sensex",
   };
 
+  const mistakeTypeValuesOptions = {
+    BP: "Bad Psychology",
+    F: "FOMO",
+    RCE: "Running Candle Entry",
+    V: "Volatility",
+    UM: "Unpredictable Market",
+    S: "Sideways",
+    G: "Greed",
+    OE: "Over Expectation",
+  };
+
   return (
     <>
       <tr className="w-full flex p-2 text-sm hover:bg-[#f4f7f9] border-b">
@@ -55,7 +66,17 @@ const TableRow = ({ item }) => {
         <td className="">{item.date}</td>
         <td className="">{item.entryPrice}</td>
         <td className="">{item.exitPrice}</td>
-        <td className={`${item.pnl > 0 ? 'text-green-600' : 'text-red-600'}`}>{item.pnl}</td>
+        <td className={`${item.pnl > 0 ? "text-green-600" : "text-red-600"}`}>
+          {item.pnl}
+        </td>
+
+        <td
+          className={`${item.returns > 0 ? "text-green-600" : "text-red-600"}`}
+        >
+          {item.returns.toFixed()}%
+        </td>
+        
+        <td className="">{mistakeTypeValuesOptions[item.mistakeType]}</td>
         <td className="">{item.riskRewardRatio}</td>
         <td className="">
           <div className="flex justify-center items-center text-lg">
