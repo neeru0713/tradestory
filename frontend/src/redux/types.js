@@ -23,5 +23,6 @@ export const HIDE_SPINNER = 'HIDE_SPINNER';
 
 export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
 export const CLOSE_NOTIFICATION = 'CLOSE_NOTIFICATION';
+export const FILTER_TABLE = 'FILTER_TABLE';
 
 export const PAY_NOW = 'PAY_NOW'

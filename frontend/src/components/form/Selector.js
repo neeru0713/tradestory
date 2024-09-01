@@ -8,7 +8,8 @@ const Selector = ({
   width,
   label,
   type,
-  text
+  text,
+  style
 }) => {
   let styles = {
     width: `${width}px`,
@@ -28,7 +29,7 @@ const Selector = ({
         name={name}
         id={`${name}-select`}
         value={value}
-        style={styles}
+        style={style}
         onChange={inputChangeHandler}
         className="w-full py-[8px] px-2 border border-1 rounded-lg text-[#4b5563]"
       >

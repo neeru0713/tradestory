@@ -5,12 +5,14 @@ import modalReducer from "./reducers/modalReducer";
 import spinnerReducer from "./reducers/spinnerReducer";
 import notificationReducer from "./reducers/notificationReducer";
 import authReducer from "./reducers/authReducer";
+import filterReducer from "./reducers/filterReducer";
 const rootReducer = combineReducers({
   auth: authReducer,
   trade: tradeReducer,
   modal: modalReducer,
   spinner: spinnerReducer,
   notification: notificationReducer,
+  filter: filterReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
