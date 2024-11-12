@@ -21,7 +21,7 @@ const mistakeTypeValuesOptions = [
 ];
 
 const tradeTypes = [
-  { label: 'Interaday', value: 'I' },
+  { label: 'Intraday', value: 'I' },
   { label: 'Swing', value: 'S' },
   { label: 'Futures', value: 'F' },
   { label: 'Options', value: 'O' },

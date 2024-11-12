@@ -8,7 +8,7 @@ export const TradeSelection = () => {
 
   const tradeTypes = [
     {
-      label: "Interaday",
+      label: "Intraday",
       value: "I",
     },
     {
