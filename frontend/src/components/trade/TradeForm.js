@@ -76,11 +76,14 @@ export const TradeForm = () => {
   //     mistakeTypeValue: "",
   //   });
 
+
+  // useEffect(() => {
+  //   console.log("ttttttt :", trade)
+  // },[trade.mistakeType])
+
   useEffect(() => {
     let pnl =
-      lotSizeMap[trade.marketIndex] *
-      trade.lotSize *
-      (trade.exitPrice - trade.entryPrice);
+      lotSizeMap[trade.marketIndex] * trade.lotSize * (trade.exitPrice - trade.entryPrice);
     dispatch(updateTrade({ pnl: pnl }));
 
     let returnsVal =
@@ -317,7 +320,7 @@ export const TradeForm = () => {
                   trade.returns >= 0 ? "bg-green-600" : "bg-red-600"
                 }`}
               >
-                {trade.returns.toFixed(1)}%
+                {trade.returns?.toFixed(1)}%
               </div>
             </div>
             <TextField
@@ -346,14 +349,14 @@ export const TradeForm = () => {
               options={riskRewardRatioOptions}
             />
 
-            {trade.pnl < 0 && (
+            {/* {trade.pnl < 0 && (
               <Selector
                 name="mistakeTypeValues"
                 value={trade.mistakeTypeValue}
                 updateValue={inputChangeHandler}
                 options={mistakeTypeValuesOptions}
               />
-            )}
+            )} */}
 
             <div
               onClick={() => backTestUpdate(!backTest)}

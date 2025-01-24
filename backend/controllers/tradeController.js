@@ -1,3 +1,4 @@
+
 const tradeService = require("../services/tradeService");
 
 const createTrade = async (req, res) => {

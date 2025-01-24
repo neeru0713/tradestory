@@ -1,6 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
+import Strategy from "./components/strategy/Strategy";
+import StrategyInfo from "./components/strategy/StrategyInfo";
 import SideNav from "./components/nav/SideNav";
 import Pricing from "./components/pricing/Pricing";
 import { Register } from "./components/auth/Register";
@@ -31,6 +33,8 @@ function App() {
               <Route path="/trade" element={<Trade />} />
               <Route path="/success" element={<Payment />} />
               <Route path="/pricing" element={<Pricing />} />
+              <Route path="/strategy" element={<Strategy />} />
+              <Route path="/strategyInfo" element={<StrategyInfo />} />
             </Routes>
           </div>
         </div>

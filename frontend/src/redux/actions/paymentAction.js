@@ -3,7 +3,8 @@ import { API_URL } from "../../config/config";
 import axios from "axios";
 import { showNotification } from "./notificationAction";
 import { showSpinner, hideSpinner } from "./spinnerAction";
-import {updateUserPlanName} from "./authActions";
+import { updateUserPlanName } from "./authActions";
+
 export const pay = (data) => async (dispatch, getState) => {
   try {
     dispatch({ type: "PAYMENT_LOADING" });

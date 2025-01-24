@@ -5,7 +5,8 @@ const httpStatus = require("http-status");
 
 const register = catchAsync(async (req, res) => {
   let newUser = await authService.createUser(req.body);
-  const token = await tokenService.generateAuthTokens(newUser);
+  const token = await tokenService.generate
+  AuthTokens(newUser);
   let resObj = {
     user: newUser,
     token,

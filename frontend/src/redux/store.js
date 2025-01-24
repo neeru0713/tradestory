@@ -6,6 +6,7 @@ import spinnerReducer from "./reducers/spinnerReducer";
 import notificationReducer from "./reducers/notificationReducer";
 import authReducer from "./reducers/authReducer";
 import filterReducer from "./reducers/filterReducer";
+import strategyReducer from "./reducers/strategyReducer";
 const rootReducer = combineReducers({
   auth: authReducer,
   trade: tradeReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   spinner: spinnerReducer,
   notification: notificationReducer,
   filter: filterReducer,
+  strategy: strategyReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

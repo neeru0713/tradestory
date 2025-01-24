@@ -8,17 +8,22 @@ import { IoPeopleOutline } from "react-icons/io5";
 const NavItems = () => {
   return (
     <ul className="flex flex-col gap-2">
-      <NavItem icon={<RiHome2Line />} name="Home" routePath="/" />
+      {/* <NavItem icon={<RiHome2Line />} name="Home" routePath="/" /> */}
       <NavItem icon={<IoCreateOutline />} name="Trade" routePath="/trade" />
       <NavItem
         icon={<HiOutlineCurrencyRupee />}
         name="Pricing"
         routePath="/pricing"
       />
-      <NavItem
+      {/* <NavItem
         icon={<IoPeopleOutline />}
         name="Community"
         routePath="/community"
+      /> */}
+      <NavItem
+        icon={<IoPeopleOutline />}
+        name="Strategy"
+        routePath="/strategy"
       />
     </ul>
   );

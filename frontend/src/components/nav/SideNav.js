@@ -12,7 +12,7 @@ const SideNav = () => {
 
   return (
     <div className="side-nav h-full border border-0 border-r p-12 flex flex-col gap-10 ">
-      <div className="flex items-center gap-4 justify-start">
+      <div className="flex items-center gap-4 justify-start cursor-pointer">
         <SiShutterstock className="text-[#4039ad] flex-shrink-0" />
         <h1 className="text-[#4039ad] text-lg font-bold">Trade Story</h1>
       </div>

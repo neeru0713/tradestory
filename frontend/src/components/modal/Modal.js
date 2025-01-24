@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import { RxCross2 } from "react-icons/rx";
 import Button from "../form/button/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { createTrade } from "../../redux/actions/tradeAction";
+import { createStrategy } from "../../redux/actions/strategyAction";
 import { closeModal } from "../../redux/actions/modalAction";
 
-const Modal = ({ title, children, numberOfPages, height, width }) => {
+const Modal = ({ title, children, numberOfPages, height, width, className, saveClickHandler}) => {
   const [pageNumber, setPageNumber] = useState(1);
+  const [isShowPageNumber, setIsShowPageNumber] = useState(false)
   const dispatch = useDispatch();
   // const trade = useSelector((state) => state.trade);
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -33,7 +35,7 @@ const Modal = ({ title, children, numberOfPages, height, width }) => {
   };
 
   const handleSubmit = () => {
-    dispatch(createTrade());
+      saveClickHandler();
   };
 
   return (
@@ -50,14 +52,14 @@ const Modal = ({ title, children, numberOfPages, height, width }) => {
           <h1 className="text-xl font-semibold px-4 py-2 text-left ">
             {title}
           </h1>
-          <hr></hr>
+          {isShowPageNumber && <hr></hr>}
         </header>
 
         <div className="modal-content h-[85%]">{renderContent()}</div>
 
         <footer className="h-[10%] w-full">
           <div className="flex flex-col">
-            <hr></hr>
+            {isShowPageNumber && <hr></hr>}
             <div className="w-full flex justify-between items-center pt-4">
               {numberOfPages > pageNumber && (
                 <div

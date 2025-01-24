@@ -8,6 +8,7 @@ const path = require("path");
 const envFile = ".env";
 const authRoutes = require("./routes/authRoutes.js")
 const tradeRoutes = require("./routes/tradeRoutes.js");
+const strategyRoutes = require("./routes/strategyRoutes.js");
 const paymentRoutes = require("./routes/paymentRoutes.js");
 const httpStatus = require("http-status");
 const { errorHandler } = require("./middlewares/error");
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use("/api/auth/", authRoutes);
 app.use("/api/trade", tradeRoutes);
 app.use("/api/payment/", paymentRoutes);
+app.use("/api/strategy", strategyRoutes);
 
 const mongoUrl = process.env.MONGODB_URL;
 

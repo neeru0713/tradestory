@@ -9,6 +9,7 @@ import {
 } from "../types";
 import { API_URL } from "../../config/config";
 import { showNotification } from "./notificationAction";
+
 export const register = (credentials) => async (dispatch) => {
   try {
     const res = await axios.post(API_URL + "/api/auth/register", credentials);

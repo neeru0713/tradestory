@@ -6,12 +6,14 @@ import { updateTrade, deleteTrade } from "../../redux/actions/tradeAction";
 import { TradeForm } from "../trade/TradeForm";
 import Drawer from "../drawer/Drawer";
 import ConfirmationModal from "../modal/ConfirmationModal";
+import { Link } from "react-router-dom";
+
 import {
   IoIosCheckmarkCircleOutline,
   IoIosCloseCircleOutline,
 } from "react-icons/io";
 
-const TableRow = ({ item }) => {
+const TableRow = ({ item, columns, tableName }) => {
   const dispatch = useDispatch();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,10 +59,31 @@ const TableRow = ({ item }) => {
     OE: "Over Expectation",
   };
 
+ 
+
   return (
     <>
+    
       <tr className="w-full flex p-2 text-sm hover:bg-[#f4f7f9] border-b">
-        <td className="">{marketIndexMap[item.marketIndex]}</td>
+        {tableName === "strategy" ? (<Link to={`/strategy/${item.name}`}>
+          {columns?.map((col) => (
+            <td className="w-full flex justify-between">{item[col.key]}</td>
+          ))}
+        </Link>) :
+
+          (
+            <div>
+              {columns?.map((col) => (
+                <td>{item[col.key]}</td>
+              ))}
+            </div>
+          )
+        }
+          
+       
+        
+        
+        {/* <td className="">{marketIndexMap[item.marketIndex]}</td>
         <td className="">{item.lotSize}</td>
         <td className="">{item.time}</td>
         <td className="">{item.date}</td>
@@ -73,9 +96,9 @@ const TableRow = ({ item }) => {
         <td
           className={`${item.returns > 0 ? "text-green-600" : "text-red-600"}`}
         >
-          {item.returns.toFixed()}%
+          {item.returns?.toFixed()}%
         </td>
-        
+
         <td className="">{mistakeTypeValuesOptions[item.mistakeType]}</td>
         <td className="">{item.riskRewardRatio}</td>
         <td className="">
@@ -100,8 +123,8 @@ const TableRow = ({ item }) => {
             className="rounded-md bg-[#f0f0f0] p-1 shadow-inner border hover:border-gray-400 hover:bg-gray-50"
           >
             <FiEdit />
-          </div>
-        </td>
+          </div> */}
+        {/* </td> */}
 
         <Drawer isOpen={isDrawerOpen} onClose={closeDrawer} tradeId={item._id}>
           <TradeForm />
