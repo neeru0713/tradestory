@@ -8,10 +8,13 @@ const StrategySchema = new mongoose.Schema(
       trim: true,
     },
     accuracy: {
-      type: Number,
+      type: String,
       required: true,
-      min: 0,
-      max: 100, 
+    },
+    description: {
+      type: String,
+      required: true,
+      trim: true,
     },
   },
   { timestamps: true }

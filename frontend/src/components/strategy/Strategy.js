@@ -8,7 +8,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { openModal } from "../../redux/actions/modalAction";
 import StrategyForm from "./StrategyForm";
 
+
+
 const Strategy = (tableName) => {
+
   const dispatch = useDispatch();
   const strategyData = useSelector((state) => state.strategy?.strategyData);
 
@@ -25,6 +28,10 @@ const Strategy = (tableName) => {
       key: "accuracy",
       label: "Accuracy",
     },
+    {
+      key: "actions",
+      label: "Actions",
+    }
   ];
 
   const createStrategyHandler = () => {
@@ -60,6 +67,7 @@ const Strategy = (tableName) => {
       >
         <StrategyForm />
       </Modal>
+     
     </div>
   );
 };

@@ -34,7 +34,7 @@ function App() {
               <Route path="/success" element={<Payment />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/strategy" element={<Strategy />} />
-              <Route path="/strategyInfo" element={<StrategyInfo />} />
+              <Route path="/strategy/:name" element={<StrategyInfo />} />
             </Routes>
           </div>
         </div>

@@ -1,4 +1,9 @@
-import { CREATE_STRATEGY, UPDATE_STRATEGY, GET_STRATEGY_DATA } from "../types";
+import {
+  CREATE_STRATEGY,
+  UPDATE_STRATEGY,
+  GET_STRATEGY_DATA,
+  GET_STRATEGY_DETAIL,
+} from "../types";
 import { API_URL } from "../../config/config";
 import { showSpinner, hideSpinner } from "./spinnerAction";
 import { showNotification } from "./notificationAction";
@@ -56,9 +61,28 @@ export const getStrategyData = () => async (dispatch) => {
     dispatch(
       showNotification({
         type: "error",
-        message: "An error occurred while fetching the strategies",
+        message: "An error occurred while fetching the strategiey",
         sticky: false,
       })
     );
   }
 };
+
+export const getStrategyDetail = (name) => async (dispatch) => {
+    try {
+        dispatch(showSpinner("Fetching strategy ..."));
+        const res = await axios.get(`${API_URL}/api/strategy/${name}`);
+        dispatch(hideSpinner());
+
+        dispatch({ type: GET_STRATEGY_DETAIL, payload: res.data.strategy });
+    } catch (error) {
+      dispatch(hideSpinner());
+      dispatch(
+        showNotification({
+          type: "error",
+          message: "An error occurred while fetching the strategy",
+          sticky: false,
+        })
+      );
+    }
+}

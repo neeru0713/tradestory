@@ -11,7 +11,17 @@ async function getStrategy() {
   return strategies;
 }
 
+
+const getStrategyByName = async (name) => {
+  const strategy = await Strategy.findOne({name});
+  if (!strategy) {
+    throw new Error("Strategy not found");
+  }
+  return strategy;
+};
+
 module.exports = {
   createStrategy,
-  getStrategy
+  getStrategy,
+  getStrategyByName
 };

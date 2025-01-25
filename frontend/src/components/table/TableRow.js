@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import { IoTrashOutline } from "react-icons/io5";
-import { FiEdit } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { updateTrade, deleteTrade } from "../../redux/actions/tradeAction";
 import { TradeForm } from "../trade/TradeForm";
 import Drawer from "../drawer/Drawer";
 import ConfirmationModal from "../modal/ConfirmationModal";
 import { Link } from "react-router-dom";
+import { FiEdit } from "react-icons/fi";
+import { IoTrashOutline } from "react-icons/io5";
 
-import {
-  IoIosCheckmarkCircleOutline,
-  IoIosCloseCircleOutline,
-} from "react-icons/io";
 
 const TableRow = ({ item, columns, tableName }) => {
   const dispatch = useDispatch();
@@ -59,77 +55,67 @@ const TableRow = ({ item, columns, tableName }) => {
     OE: "Over Expectation",
   };
 
- 
-
   return (
     <>
-    
-      <tr className="w-full flex p-2 text-sm hover:bg-[#f4f7f9] border-b">
-        {tableName === "strategy" ? (<Link to={`/strategy/${item.name}`}>
-          {columns?.map((col) => (
-            <td className="w-full flex justify-between">{item[col.key]}</td>
-          ))}
-        </Link>) :
+      <tr className="w-full flex p-2 text-sm hover:bg-[#f4f7f9] border border-l-0 border-r-0">
+        {tableName === "strategy" ? (
+          <Link to={`/strategy/${item.name}`} className="flex w-full ml-[2rem]">
+            {columns?.map((col) => (
+              <td key={col.key} className="flex justify-between">
+                {col.key === "actions" ? (
+                  <div className="flex gap-5 items-center justify-center">
+                    <div
+                      onClick={handleDelete}
+                      className="rounded-md bg-[#f0f0f0] border hover:border-gray-400 hover:bg-gray-50 p-1 shadow-inner"
+                    >
+                      <IoTrashOutline />
+                    </div>
 
-          (
-            <div>
-              {columns?.map((col) => (
-                <td>{item[col.key]}</td>
-              ))}
-            </div>
-          )
-        }
-          
-       
-        
-        
-        {/* <td className="">{marketIndexMap[item.marketIndex]}</td>
-        <td className="">{item.lotSize}</td>
-        <td className="">{item.time}</td>
-        <td className="">{item.date}</td>
-        <td className="">{item.entryPrice}</td>
-        <td className="">{item.exitPrice}</td>
-        <td className={`${item.pnl > 0 ? "text-green-600" : "text-red-600"}`}>
-          {item.pnl}
-        </td>
+                    <div
+                      onClick={editClickHandler}
+                      className="rounded-md bg-[#f0f0f0] p-1 shadow-inner border hover:border-gray-400 hover:bg-gray-50"
+                    >
+                      <FiEdit />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="ml-[2rem]">{item[col.key]}</div>
+                )}
+              </td>
+            ))}
+          </Link>
+        ) : (
+          <>
+            {columns?.map((col) => (
+              <td key={col.key} className="flex justify-between">
+                {col.key === "actions" ? (
+                  <div className="flex gap-5 items-center justify-center">
+                    <div
+                      onClick={handleDelete}
+                      className="rounded-md bg-[#f0f0f0] border hover:border-gray-400 hover:bg-gray-50 p-1 shadow-inner"
+                    >
+                      <IoTrashOutline />
+                    </div>
 
-        <td
-          className={`${item.returns > 0 ? "text-green-600" : "text-red-600"}`}
-        >
-          {item.returns?.toFixed()}%
-        </td>
-
-        <td className="">{mistakeTypeValuesOptions[item.mistakeType]}</td>
-        <td className="">{item.riskRewardRatio}</td>
-        <td className="">
-          <div className="flex justify-center items-center text-lg">
-            {item.backTest === true ? (
-              <IoIosCheckmarkCircleOutline className="text-[#3da40b]" />
-            ) : (
-              <IoIosCloseCircleOutline className="text-[#a33e0b]" />
-            )}
-          </div>
-        </td>
-        <td className="flex gap-5 items-center justify-center">
-          <div
-            onClick={handleDelete}
-            className="rounded-md bg-[#f0f0f0] border hover:border-gray-400 hover:bg-gray-50 p-1 shadow-inner"
-          >
-            <IoTrashOutline />
-          </div>
-
-          <div
-            onClick={editClickHandler}
-            className="rounded-md bg-[#f0f0f0] p-1 shadow-inner border hover:border-gray-400 hover:bg-gray-50"
-          >
-            <FiEdit />
-          </div> */}
-        {/* </td> */}
-
-        <Drawer isOpen={isDrawerOpen} onClose={closeDrawer} tradeId={item._id}>
-          <TradeForm />
-        </Drawer>
+                    <div
+                      onClick={editClickHandler}
+                      className="rounded-md bg-[#f0f0f0] p-1 shadow-inner border hover:border-gray-400 hover:bg-gray-50"
+                    >
+                      <FiEdit />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="ml-[2rem]">{item[col.key]}</div>
+                )}
+              </td>
+            ))}
+          </>
+        )}
       </tr>
+
+      <Drawer isOpen={isDrawerOpen} onClose={closeDrawer} tradeId={item._id}>
+        <TradeForm />
+      </Drawer>
 
       <ConfirmationModal
         isOpen={isModalOpen}
