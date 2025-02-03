@@ -16,7 +16,14 @@ const StrategySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    BackTestData: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "StrategyData",
+      },
+    ],
   },
+
   { timestamps: true }
 );
 

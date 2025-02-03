@@ -7,16 +7,17 @@ import ConfirmationModal from "../modal/ConfirmationModal";
 import { Link } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
 import { IoTrashOutline } from "react-icons/io5";
+import { openDrawer } from "../../redux/actions/drawerAction";
 
 
 const TableRow = ({ item, columns, tableName }) => {
   const dispatch = useDispatch();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const editClickHandler = () => {
     dispatch(updateTrade(item));
-    setIsDrawerOpen(true);
+   dispatch(openDrawer());
   };
 
   const handleDelete = () => {
@@ -33,8 +34,7 @@ const TableRow = ({ item, columns, tableName }) => {
   };
 
   const closeDrawer = () => {
-    setIsDrawerOpen(false);
-  };
+dispatch(openDrawer());  };
 
   const marketIndexMap = {
     N: "Nifty 50",
@@ -59,11 +59,11 @@ const TableRow = ({ item, columns, tableName }) => {
     <>
       <tr className="w-full flex p-2 text-sm hover:bg-[#f4f7f9] border border-l-0 border-r-0">
         {tableName === "strategy" ? (
-          <Link to={`/strategy/${item.name}`} className="flex w-full ml-[2rem]">
+          <Link to={`/strategy/${item.name}`} className="flex w-full ml-[1rem]">
             {columns?.map((col) => (
-              <td key={col.key} className="flex justify-between">
+              <td key={col.key} className="flex">
                 {col.key === "actions" ? (
-                  <div className="flex gap-5 items-center justify-center">
+                  <div className="flex gap-2">
                     <div
                       onClick={handleDelete}
                       className="rounded-md bg-[#f0f0f0] border hover:border-gray-400 hover:bg-gray-50 p-1 shadow-inner"
@@ -79,7 +79,7 @@ const TableRow = ({ item, columns, tableName }) => {
                     </div>
                   </div>
                 ) : (
-                  <div className="ml-[2rem]">{item[col.key]}</div>
+                  <div className="">{item[col.key]}</div>
                 )}
               </td>
             ))}
@@ -87,7 +87,7 @@ const TableRow = ({ item, columns, tableName }) => {
         ) : (
           <>
             {columns?.map((col) => (
-              <td key={col.key} className="flex justify-between">
+              <td key={col.key} className="flex">
                 {col.key === "actions" ? (
                   <div className="flex gap-5 items-center justify-center">
                     <div
@@ -105,7 +105,7 @@ const TableRow = ({ item, columns, tableName }) => {
                     </div>
                   </div>
                 ) : (
-                  <div className="ml-[2rem]">{item[col.key]}</div>
+                  <div className="">{item[col.key]}</div>
                 )}
               </td>
             ))}
@@ -113,7 +113,7 @@ const TableRow = ({ item, columns, tableName }) => {
         )}
       </tr>
 
-      <Drawer isOpen={isDrawerOpen} onClose={closeDrawer} tradeId={item._id}>
+      <Drawer tradeId={item._id}>
         <TradeForm />
       </Drawer>
 

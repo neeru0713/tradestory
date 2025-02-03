@@ -3,7 +3,7 @@ import { FaPlus } from "react-icons/fa6";
 import Table from "../table/Table";
 import Modal from "../modal/Modal";
 import { createStrategy } from "../../redux/actions/strategyAction";
-import { getStrategyData } from "../../redux/actions/strategyAction";
+import { getStrategies } from "../../redux/actions/strategyAction";
 import { useSelector, useDispatch } from "react-redux";
 import { openModal } from "../../redux/actions/modalAction";
 import StrategyForm from "./StrategyForm";
@@ -13,7 +13,7 @@ import StrategyForm from "./StrategyForm";
 const Strategy = (tableName) => {
 
   const dispatch = useDispatch();
-  const strategyData = useSelector((state) => state.strategy?.strategyData);
+  const strategies = useSelector((state) => state.strategy?.strategies);
 
     const createBtnClickHandler = () => {
     dispatch(openModal());
@@ -40,13 +40,13 @@ const Strategy = (tableName) => {
     
 
     useEffect(() => {
-    dispatch(getStrategyData());
+    dispatch(getStrategies());
       },[]);
     
     
      useEffect(() => {
-       console.log("...........", strategyData);
-     }, [strategyData]);
+       console.log("...........", strategies);
+     }, [strategies]);
     
 
   return (
@@ -58,7 +58,10 @@ const Strategy = (tableName) => {
           className="font-bold text-lg mt-2"
         />
       </div>
-      <Table data={strategyData} columns={columns} tableName="strategy" />
+
+      <div className="table-container max-h-[calc(100vh-150px)]  border-b m-4">
+        <Table data={strategies} columns={columns} tableName="strategy" />
+      </div>
 
       <Modal
         title="New Strategy"
@@ -67,7 +70,6 @@ const Strategy = (tableName) => {
       >
         <StrategyForm />
       </Modal>
-     
     </div>
   );
 };

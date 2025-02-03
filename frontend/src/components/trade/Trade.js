@@ -194,7 +194,9 @@ const Trade = (tableName) => {
             </div>
           )}
         </div>
-        <div className="table-container max-h-[calc(100vh-150px)] overflow-y-scroll border-b">
+        <div
+          className="table-container max-h-[calc(100vh-150px)] overflow-y-scroll border-b"
+        >
           <Table data={tradeData} columns={columns} tableName="trade" />
         </div>
       </div>

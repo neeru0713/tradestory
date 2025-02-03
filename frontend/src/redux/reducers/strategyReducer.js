@@ -2,18 +2,19 @@
 import {
   CREATE_STRATEGY,
   UPDATE_STRATEGY,
-  GET_STRATEGY_DATA,
+  GET_STRATEGIES,
   GET_STRATEGY_DETAIL,
-} from "../types";
+} from "../types"; 
 
 const initialState = {
-  strategyData: [],
+  strategies: [],
   strategyInput: {
     name: "",
     accuracy: "",
     description: "",
-    },
-    strategyDetail: {}
+  },
+  strategyDetail: {},
+  selectedStrategyBackTestData: {}
 };
 
 const strategyReducer = (state = initialState, action) => {
@@ -25,13 +26,13 @@ const strategyReducer = (state = initialState, action) => {
         };
       case CREATE_STRATEGY:
         return {
-          strategyData: [...state?.strategyData, action.payload],
+          strategies: [...state?.strategies, action.payload],
         };
 
-      case GET_STRATEGY_DATA:
+      case GET_STRATEGIES:
         return {
           ...state,
-          strategyData: action.payload,
+          strategies: action.payload,
         };
       case GET_STRATEGY_DETAIL:
         return {

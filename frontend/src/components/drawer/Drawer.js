@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../form/button/Button";
 import { editTrade } from "../../redux/actions/tradeAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { closeDrawer } from "../../redux/actions/drawerAction";
+// import { openDrawer } from "../../redux/actions/openAction";
 
-const Drawer = ({ isOpen, onClose, tradeId, children }) => {
+const Drawer = ({ tradeId, children,heading,  }) => {
   const dispatch = useDispatch();
+    const isOpen = useSelector((state) => state.drawer.isOpen);
+
+  useEffect(() => {
+console.log("..........", isOpen)
+  }, [isOpen])
+
 
   const handleSubmit = () => {
     dispatch(editTrade(tradeId));
-    onClose();
+    dispatch(closeDrawer());
   };
+
+  const handleClose = () => {
+   dispatch(closeDrawer());
+ } 
 
   return (
     <>
@@ -17,7 +29,6 @@ const Drawer = ({ isOpen, onClose, tradeId, children }) => {
         className={`drawer-overlay z-20 fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
-        onClick={onClose}
       ></div>
       <div
         className={`drawer z-20 fixed top-0 right-0 h-full w-[30%] bg-gray-50 shadow-gray-500 transform ${
@@ -26,13 +37,13 @@ const Drawer = ({ isOpen, onClose, tradeId, children }) => {
       >
         <button
           className="absolute top-2 left-4 text-xl text-md hover:rounded-md hover:bg-gray-200 cursor-pointer py-[2px] px-[4px]"
-          onClick={onClose}
+          onClick={handleClose}
         >
           &times;
         </button>
 
         <div className="p-4">
-          <h2 className="text-lg font-semibold">Edit Trade</h2>
+          <h2 className="text-lg font-semibold">{heading}</h2>
           {children}
         </div>
         <div className="absolute bottom-6 right-2">

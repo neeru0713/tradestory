@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { thunk } from "redux-thunk";
 import tradeReducer from "./reducers/tradeReducer";
 import modalReducer from "./reducers/modalReducer";
+import drawerReducer from "./reducers/drawerReducer";
 import spinnerReducer from "./reducers/spinnerReducer";
 import notificationReducer from "./reducers/notificationReducer";
 import authReducer from "./reducers/authReducer";
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   trade: tradeReducer,
   modal: modalReducer,
+  drawer: drawerReducer,
   spinner: spinnerReducer,
   notification: notificationReducer,
   filter: filterReducer,

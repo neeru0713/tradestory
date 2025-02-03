@@ -22,6 +22,7 @@ export const TradeSelection = () => {
     {
       label: "Options",
       value: "O",
+      
     },
     {
       label: "Crypto future",

@@ -37,6 +37,9 @@
   }
 }
 
-td, th{
-  width: 11%;
+th, td {
+  width: calc(100% / var(--column-count));
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

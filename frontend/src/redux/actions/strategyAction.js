@@ -1,7 +1,7 @@
 import {
   CREATE_STRATEGY,
   UPDATE_STRATEGY,
-  GET_STRATEGY_DATA,
+  GET_STRATEGIES,
   GET_STRATEGY_DETAIL,
 } from "../types";
 import { API_URL } from "../../config/config";
@@ -49,13 +49,13 @@ export const createStrategy = () => async (dispatch, getState) => {
 };
 
 
-export const getStrategyData = () => async (dispatch) => {
+export const getStrategies = () => async (dispatch) => {
   try {
     dispatch(showSpinner("Fetching strategies ..."));
     const res = await axios.get(`${API_URL}/api/strategy`);
     dispatch(hideSpinner());
 
-    dispatch({ type: GET_STRATEGY_DATA, payload: res.data.strategies });
+    dispatch({ type: GET_STRATEGIES, payload: res.data.strategies });
   } catch (error) {
     dispatch(hideSpinner());
     dispatch(
