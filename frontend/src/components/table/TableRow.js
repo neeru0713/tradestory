@@ -33,8 +33,7 @@ const TableRow = ({ item, columns, tableName }) => {
     setIsModalOpen(false);
   };
 
-  const closeDrawer = () => {
-dispatch(openDrawer());  };
+
 
   const marketIndexMap = {
     N: "Nifty 50",
@@ -114,7 +113,8 @@ dispatch(openDrawer());  };
       </tr>
 
       <Drawer tradeId={item._id}>
-        <TradeForm />
+        {/* <h1>hello</h1> */}
+        <TradeForm /> 
       </Drawer>
 
       <ConfirmationModal

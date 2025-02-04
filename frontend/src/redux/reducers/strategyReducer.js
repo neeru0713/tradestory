@@ -4,7 +4,24 @@ import {
   UPDATE_STRATEGY,
   GET_STRATEGIES,
   GET_STRATEGY_DETAIL,
+  UPDATE_BACKTESTDATAINPUT
 } from "../types"; 
+
+
+const getCurrentTime = () => {
+  const today = new Date();
+  const hh = String(today.getHours()).padStart(2, "0");
+  const mm = String(today.getMinutes()).padStart(2, "0");
+  return `${hh}:${mm}`;
+};
+
+const getCurrentDate = () => {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const dd = String(today.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
+};
 
 const initialState = {
   strategies: [],
@@ -14,7 +31,12 @@ const initialState = {
     description: "",
   },
   strategyDetail: {},
-  selectedStrategyBackTestData: {}
+  selectedStrategyBackTestData: {},
+  backTestDataInputForm: {
+    result: "",
+    date: getCurrentDate(),
+    time: getCurrentTime()
+  },
 };
 
 const strategyReducer = (state = initialState, action) => {
@@ -24,6 +46,11 @@ const strategyReducer = (state = initialState, action) => {
           ...state,
           strategyInput: action.payload.strategyInput,
         };
+         case UPDATE_BACKTESTDATAINPUT:
+         return {
+           ...state,
+           backTestDataInputForm: action.payload.backTestDataInputForm,
+         };
       case CREATE_STRATEGY:
         return {
           strategies: [...state?.strategies, action.payload],

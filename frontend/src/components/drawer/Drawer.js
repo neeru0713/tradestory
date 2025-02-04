@@ -5,23 +5,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeDrawer } from "../../redux/actions/drawerAction";
 // import { openDrawer } from "../../redux/actions/openAction";
 
-const Drawer = ({ tradeId, children,heading,  }) => {
+const Drawer = ({
+  tradeId,
+  children,
+  heading,
+  submitHandler,
+  showSubmitButton = true,
+  drawerCloseHandler,
+}) => {
   const dispatch = useDispatch();
-    const isOpen = useSelector((state) => state.drawer.isOpen);
+  const isOpen = useSelector((state) => state.drawer.isOpen);
 
   useEffect(() => {
-console.log("..........", isOpen)
-  }, [isOpen])
-
+    console.log("..........", isOpen);
+  }, [isOpen]);
 
   const handleSubmit = () => {
-    dispatch(editTrade(tradeId));
+    submitHandler();
     dispatch(closeDrawer());
   };
 
   const handleClose = () => {
-   dispatch(closeDrawer());
- } 
+    drawerCloseHandler();
+    dispatch(closeDrawer());
+  };
 
   return (
     <>
@@ -31,7 +38,7 @@ console.log("..........", isOpen)
         }`}
       ></div>
       <div
-        className={`drawer z-20 fixed top-0 right-0 h-full w-[30%] bg-gray-50 shadow-gray-500 transform ${
+        className={`drawer z-20 fixed top-0 right-0 h-full w-[30%] bg-gray-50 shadow-gray-500 transform   ${
           isOpen ? "translate-x-0 shadow-xl" : "translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
@@ -47,12 +54,14 @@ console.log("..........", isOpen)
           {children}
         </div>
         <div className="absolute bottom-6 right-2">
-          <Button
-            name="Submit"
-            width="150"
-            type="primary"
-            onClick={handleSubmit}
-          />
+          {showSubmitButton && (
+            <Button
+              name="Submit"
+              width="150"
+              type="primary"
+              onClick={handleSubmit}
+            />
+          )}
         </div>
       </div>
     </>

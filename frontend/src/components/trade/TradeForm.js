@@ -222,7 +222,7 @@ export const TradeForm = () => {
   ];
 
   return (
-    <div className="trade-form relative flex flex-col gap-2">
+    <div className="trade-form relative flex flex-col gap-2 m-4">
       {/* <div className="flex flex-col">
         <div className="tabs flex gap-2 text-md cursor-pointer tab-wrapper font-semibold">
           <div className="flex flex-col tab">

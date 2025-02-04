@@ -8,12 +8,14 @@ import Table from "../table/Table";
 import { CiCirclePlus } from "react-icons/ci";
 import { createTrade } from "../../redux/actions/tradeAction";
 import { filterTable } from "../../redux/actions/filterActions";
+import { editTrade } from "../../redux/actions/tradeAction";
 import { useSelector, useDispatch } from "react-redux";
 import { getTrades } from "../../redux/actions/tradeAction";
 import { openModal } from "../../redux/actions/modalAction";
 import Selector from "../form/Selector";
+import Drawer from "../drawer/Drawer";
 
-const Trade = (tableName) => {
+const Trade = (tableName, showSubmitButton) => {
   const dispatch = useDispatch();
   const trade = useSelector((state) => state.trade);
   const filter = useSelector((state) => state.filter);
@@ -93,6 +95,10 @@ const Trade = (tableName) => {
 
   const createTradeHandler = () => {
     dispatch(createTrade());
+  };
+
+  const editTradeHandler = () => {
+    dispatch(editTrade());
   };
 
   const inputChangeHandler = (name, value, type) => {
@@ -194,9 +200,7 @@ const Trade = (tableName) => {
             </div>
           )}
         </div>
-        <div
-          className="table-container max-h-[calc(100vh-150px)] overflow-y-scroll border-b"
-        >
+        <div className="table-container max-h-[calc(100vh-150px)] overflow-y-scroll border-b">
           <Table data={tradeData} columns={columns} tableName="trade" />
         </div>
       </div>
@@ -211,6 +215,9 @@ const Trade = (tableName) => {
         <TradeSelection />
         <TradeForm />
       </Modal>
+      {/* <Drawer submitHandler={editTradeHandler} showSubmitButton={true} >
+        <h1>Edit trade</h1>
+        </Drawer> */}
     </div>
   );
 };

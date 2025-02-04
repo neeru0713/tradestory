@@ -3,6 +3,7 @@ import {
   UPDATE_STRATEGY,
   GET_STRATEGIES,
   GET_STRATEGY_DETAIL,
+  UPDATE_BACKTESTDATAINPUT,
 } from "../types";
 import { API_URL } from "../../config/config";
 import { showSpinner, hideSpinner } from "./spinnerAction";
@@ -12,10 +13,17 @@ import axios from "axios";
 
 export const updateStrategy = (strategyInput) => async (dispatch) => {
   dispatch({
-    type: UPDATE_STRATEGY,
+    type:  UPDATE_STRATEGY,
     payload: { strategyInput: strategyInput },
   });
 };
+
+export const updateBackTestDataInput = (backTestDataInputForm) => async (dispatch) => {
+ dispatch({
+   type: UPDATE_BACKTESTDATAINPUT,
+   payload: { backTestDataInputForm: backTestDataInputForm },
+ }); 
+}
 
 export const createStrategy = () => async (dispatch, getState) => {
   try {
