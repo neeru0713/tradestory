@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const StrategyDetailSchema = new mongoose.Schema(
+const BackTestDataSchema = new mongoose.Schema(
   {
     time: {
       type: String,
@@ -15,7 +15,7 @@ const StrategyDetailSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      enum: ["win", "loss"],
+      enum: ["profit", "loss"],
     },
     strategyId: {
       type: mongoose.Schema.Types.ObjectId, 
@@ -27,4 +27,7 @@ const StrategyDetailSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Strategy", StrategyDetailSchema);
+module.exports = mongoose.model(
+  "BackTestData",
+  BackTestDataSchema
+);

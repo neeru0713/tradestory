@@ -36,8 +36,28 @@ const getStrategyByName = async (req, res) => {
       }
 }
 
+// const createStrategyById = async (req, res) => {
+// }
+
+
+
+
+  // const  getBackTestData = async(req, res) => {
+  //   try {
+  //     const { strategyId } = req.params;
+  //     const backTestData = await strategyService.getBackTestDataForStrategy(strategyId);
+  //     res.status(200).json(backTestData);
+  //   } catch (error) {
+  //     res.status(500).json({ error: error.message });
+  //   }
+  // }
+
+
+
 module.exports = {
   createStrategy,
   getStrategy,
-  getStrategyByName
+ getStrategyByName 
+
+ 
 };

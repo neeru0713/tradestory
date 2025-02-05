@@ -4,6 +4,8 @@ import {
   GET_STRATEGIES,
   GET_STRATEGY_DETAIL,
   UPDATE_BACKTESTDATAINPUT,
+  CREATE_BACKTESTDATA,
+ 
 } from "../types";
 import { API_URL } from "../../config/config";
 import { showSpinner, hideSpinner } from "./spinnerAction";
@@ -19,6 +21,7 @@ export const updateStrategy = (strategyInput) => async (dispatch) => {
 };
 
 export const updateBackTestDataInput = (backTestDataInputForm) => async (dispatch) => {
+  console.log("000000", backTestDataInputForm);
  dispatch({
    type: UPDATE_BACKTESTDATAINPUT,
    payload: { backTestDataInputForm: backTestDataInputForm },
@@ -94,3 +97,39 @@ export const getStrategyDetail = (name) => async (dispatch) => {
       );
     }
 }
+
+export const createBackTestData = (strategyId) => async (dispatch, getState) => {
+  try {
+    const { strategy } = getState();
+    dispatch(showSpinner("BackTestData is being created ..."));
+    const res = await axios.post(
+      `${API_URL}/api/backTestData/${strategyId}`,
+      strategy.backTestDataInputForm
+    );
+    dispatch(hideSpinner());
+    dispatch(
+      showNotification({
+        type: "success",
+        message: " created successfully",
+        sticky: false,
+      })
+    );
+    dispatch(closeModal());
+    dispatch({
+      type: CREATE_BACKTESTDATA,
+      payload: { newBackTestDataRecord: res.data.newBackTestDataRecord},
+    });
+  } catch (error) {
+    dispatch(hideSpinner());
+    dispatch(closeModal());
+    dispatch(
+      showNotification({
+        type: "error",
+        message: "An error occurred while creating the backTestDataStrategy",
+        sticky: false,
+      })
+    );
+  }
+};
+
+

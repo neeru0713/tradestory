@@ -13,13 +13,12 @@ const StrategySchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
       trim: true,
     },
-    BackTestData: [
+    backTestData: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "StrategyData",
+        ref: "BackTestData",
       },
     ],
   },

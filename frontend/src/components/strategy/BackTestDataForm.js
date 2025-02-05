@@ -10,7 +10,7 @@ const BackTestDataForm = () => {
     (state) => state.strategy.backTestDataInputForm
   );
 
-  const inputChangeHandler = (name, value, type) => {
+    const inputChangeHandler = (name, value, type) => {
       let val = value;
     if (type === "number") {
       if (value) {
@@ -24,8 +24,9 @@ const BackTestDataForm = () => {
         [name]: val,
       };
       dispatch(updateBackTestDataInput(obj));
-    //   console.log("111111111111", updateBackTestDataInput);
     };
+
+  
     
 
     useEffect(() => {

@@ -6,6 +6,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
 const envFile = ".env";
+const backTestDataRoutes = require("./routes/backTestDataRoutes.js");
 const authRoutes = require("./routes/authRoutes.js")
 const tradeRoutes = require("./routes/tradeRoutes.js");
 const strategyRoutes = require("./routes/strategyRoutes.js");
@@ -21,7 +22,7 @@ app.use("/api/auth/", authRoutes);
 app.use("/api/trade", tradeRoutes);
 app.use("/api/payment/", paymentRoutes);
 app.use("/api/strategy", strategyRoutes);
-
+app.use("/api/backTestData", backTestDataRoutes);
 const mongoUrl = process.env.MONGODB_URL;
 
 // MongoDB connection

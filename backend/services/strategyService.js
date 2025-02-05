@@ -1,4 +1,5 @@
 const Strategy = require("../models/Strategy.js");
+const BackTestData = require("../models/BackTestData.js")
 
 async function createStrategy(StrategyBody) {
   let newStrategy = new Strategy(StrategyBody);
@@ -13,15 +14,27 @@ async function getStrategy() {
 
 
 const getStrategyByName = async (name) => {
-  const strategy = await Strategy.findOne({name});
+  const strategy = await Strategy.findOne({ name }).populate("backTestData");
+  
   if (!strategy) {
     throw new Error("Strategy not found");
   }
   return strategy;
 };
 
+
+
+
+  // const  getBackTestDataForStrategy = async (strategyId) => {
+  //   return await BackTestDataRecord.find({ strategyId });
+  // }
+
+
+
+
 module.exports = {
   createStrategy,
   getStrategy,
-  getStrategyByName
+  getStrategyByName,
+  
 };

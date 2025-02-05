@@ -4,7 +4,8 @@ import {
   UPDATE_STRATEGY,
   GET_STRATEGIES,
   GET_STRATEGY_DETAIL,
-  UPDATE_BACKTESTDATAINPUT
+  UPDATE_BACKTESTDATAINPUT,
+  CREATE_BACKTESTDATA,
 } from "../types"; 
 
 
@@ -31,7 +32,7 @@ const initialState = {
     description: "",
   },
   strategyDetail: {},
-  selectedStrategyBackTestData: {},
+  selectedStrategyBackTestData: [],
   backTestDataInputForm: {
     result: "",
     date: getCurrentDate(),
@@ -46,11 +47,7 @@ const strategyReducer = (state = initialState, action) => {
           ...state,
           strategyInput: action.payload.strategyInput,
         };
-         case UPDATE_BACKTESTDATAINPUT:
-         return {
-           ...state,
-           backTestDataInputForm: action.payload.backTestDataInputForm,
-         };
+
       case CREATE_STRATEGY:
         return {
           strategies: [...state?.strategies, action.payload],
@@ -66,6 +63,22 @@ const strategyReducer = (state = initialState, action) => {
           ...state,
           strategyDetail: action.payload,
         };
+
+      case UPDATE_BACKTESTDATAINPUT:
+        return {
+          ...state,
+          backTestDataInputForm: action.payload.backTestDataInputForm,
+        };
+      case CREATE_BACKTESTDATA:
+        return {
+          ...state,
+          selectedStrategyBackTestData: [
+            ...state.selectedStrategyBackTestData,
+            action.payload.newBackTestDataRecord,
+          ],
+        };
+      
+    
 
       default:
         return state;

@@ -5,6 +5,7 @@ import axios from "axios";
 import { API_URL } from "../../config/config";
 import { useSelector, useDispatch } from "react-redux";
 import { getStrategyDetail } from "../../redux/actions/strategyAction";
+import { createBackTestData } from "../../redux/actions/strategyAction";
 import Table from "../table/Table";
 import { BsInfoCircle } from "react-icons/bs";
 import { openDrawer } from "../../redux/actions/drawerAction";
@@ -12,7 +13,6 @@ import Drawer from "../drawer/Drawer";
 import TextField from "../form/TextField";
 import { FiPlus } from "react-icons/fi";
 import BackTestDataForm from "./BackTestDataForm";
-
 
 
 const StrategyInfo = (tableName, showSubmitButton) => {
@@ -32,6 +32,11 @@ const StrategyInfo = (tableName, showSubmitButton) => {
   // const toggleAccordion = () => {
   //   setIsOpen((prev) => !prev);
   // };
+
+  
+  useEffect(() => {
+    console.log("....", strategyDetail)
+  },[strategyDetail])
 
   const columns = [
     {
@@ -89,6 +94,10 @@ const StrategyInfo = (tableName, showSubmitButton) => {
     setIsInfoIconClicked(false)
     setIsAddNewIconClicked(false)
   }
+
+  const backTestDataInputHandler = () => {
+      dispatch(createBackTestData(strategyDetail._id));
+    };
 
   return (
     <div className="">
@@ -154,7 +163,10 @@ const StrategyInfo = (tableName, showSubmitButton) => {
             className="flex m-4 text-algin text-right text-xl cursor-pointer"
           />
           {isAddNewIconClicked && (
-            <Drawer drawerCloseHandler={drawerCloseHandler}>
+            <Drawer
+              drawerCloseHandler={drawerCloseHandler}
+              submitHandler={backTestDataInputHandler}
+            >
               <BackTestDataForm />
             </Drawer>
           )}
@@ -174,7 +186,11 @@ const StrategyInfo = (tableName, showSubmitButton) => {
         )} */}
 
         <div className="table-container max-h-[calc(100vh-150px)] m-4 border w-[50%] ">
-          <Table tableName="strategyDetail" columns={columns} />
+          <Table
+            tableName="strategyDetail"
+            columns={columns}
+            data={strategyDetail.backTestData}
+          />
         </div>
       </div>
     </div>
