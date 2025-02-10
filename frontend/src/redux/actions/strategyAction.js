@@ -21,7 +21,6 @@ export const updateStrategy = (strategyInput) => async (dispatch) => {
 };
 
 export const updateBackTestDataInput = (backTestDataInputForm) => async (dispatch) => {
-  console.log("000000", backTestDataInputForm);
  dispatch({
    type: UPDATE_BACKTESTDATAINPUT,
    payload: { backTestDataInputForm: backTestDataInputForm },
@@ -106,6 +105,7 @@ export const createBackTestData = (strategyId) => async (dispatch, getState) => 
       `${API_URL}/api/backTestData/${strategyId}`,
       strategy.backTestDataInputForm
     );
+    console.log("0000000000", res);
     dispatch(hideSpinner());
     dispatch(
       showNotification({
@@ -117,7 +117,7 @@ export const createBackTestData = (strategyId) => async (dispatch, getState) => 
     dispatch(closeModal());
     dispatch({
       type: CREATE_BACKTESTDATA,
-      payload: { newBackTestDataRecord: res.data.newBackTestDataRecord},
+      payload: res.data,
     });
   } catch (error) {
     dispatch(hideSpinner());

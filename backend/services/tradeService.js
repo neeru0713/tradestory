@@ -1,7 +1,6 @@
 const { Trade } = require("../models/Trade.js");
 
 async function createTrade(tradeBody) {
-  // console.log("@@@@@@@@@@", tradeBody);
   let newTrade = new Trade(tradeBody);
   await newTrade.save();
   return newTrade;

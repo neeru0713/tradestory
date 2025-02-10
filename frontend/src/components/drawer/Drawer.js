@@ -17,9 +17,9 @@ const Drawer = ({
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.drawer.isOpen);
 
-  useEffect(() => {
-    console.log("..........", isOpen);
-  }, [isOpen]);
+  // useEffect(() => {
+  //   console.log("..........", isOpen);
+  // }, [isOpen]);
 
   const handleSubmit = () => {
     submitHandler();

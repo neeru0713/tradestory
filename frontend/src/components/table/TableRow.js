@@ -14,10 +14,12 @@ const TableRow = ({ item, columns, tableName }) => {
   const dispatch = useDispatch();
   // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editButtonClicked, SetEditButtonClicked ] = useState(false);
 
   const editClickHandler = () => {
     dispatch(updateTrade(item));
-   dispatch(openDrawer());
+    dispatch(openDrawer());
+    SetEditButtonClicked(true);
   };
 
   const handleDelete = () => {
@@ -53,6 +55,10 @@ const TableRow = ({ item, columns, tableName }) => {
     G: "Greed",
     OE: "Over Expectation",
   };
+
+  const updateTraderHandler = () => {
+    dispatch(updateTrade(item));
+  }
 
   return (
     <>
@@ -111,11 +117,12 @@ const TableRow = ({ item, columns, tableName }) => {
           </>
         )}
       </tr>
-
-      <Drawer tradeId={item._id}>
-        {/* <h1>hello</h1> */}
-        <TradeForm /> 
-      </Drawer>
+      {editButtonClicked && (
+        <Drawer tradeId={item._id} submitHandler={updateTraderHandler}>
+          {/* <h1>hello</h1> */}
+          <TradeForm />
+        </Drawer>
+      )}
 
       <ConfirmationModal
         isOpen={isModalOpen}

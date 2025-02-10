@@ -21,6 +21,9 @@ const StrategyInfo = (tableName, showSubmitButton) => {
   const { name } = useParams();
   const dispatch = useDispatch();
   const strategyDetail = useSelector((state) => state.strategy.strategyDetail);
+const selectedStrategyBackTestData = useSelector(
+  (state) => state.strategy.selectedStrategyBackTestData
+);
     // const strategyInput = useSelector((state) => state.strategy.strategyInput);
 
   // const [isOpen, setIsOpen] = useState(false);
@@ -35,8 +38,8 @@ const StrategyInfo = (tableName, showSubmitButton) => {
 
   
   useEffect(() => {
-    console.log("....", strategyDetail)
-  },[strategyDetail])
+    console.log("sssssss....", selectedStrategyBackTestData);
+  }, [selectedStrategyBackTestData]);
 
   const columns = [
     {
@@ -95,7 +98,7 @@ const StrategyInfo = (tableName, showSubmitButton) => {
     setIsAddNewIconClicked(false)
   }
 
-  const backTestDataInputHandler = () => {
+  const backTestDataSubmitHandler = () => {
       dispatch(createBackTestData(strategyDetail._id));
     };
 
@@ -165,7 +168,7 @@ const StrategyInfo = (tableName, showSubmitButton) => {
           {isAddNewIconClicked && (
             <Drawer
               drawerCloseHandler={drawerCloseHandler}
-              submitHandler={backTestDataInputHandler}
+              submitHandler={backTestDataSubmitHandler}
             >
               <BackTestDataForm />
             </Drawer>
@@ -189,7 +192,7 @@ const StrategyInfo = (tableName, showSubmitButton) => {
           <Table
             tableName="strategyDetail"
             columns={columns}
-            data={strategyDetail.backTestData}
+            data={selectedStrategyBackTestData}
           />
         </div>
       </div>

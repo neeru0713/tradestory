@@ -24,10 +24,7 @@ const BackTestDataForm = () => {
         [name]: val,
       };
       dispatch(updateBackTestDataInput(obj));
-    };
-
-  
-    
+    };  
 
     useEffect(() => {
      console.log("0000000000", backTestDataInputForm);

@@ -34,7 +34,7 @@ const initialState = {
   strategyDetail: {},
   selectedStrategyBackTestData: [],
   backTestDataInputForm: {
-    result: "",
+    result: "profit",
     date: getCurrentDate(),
     time: getCurrentTime()
   },
@@ -62,6 +62,7 @@ const strategyReducer = (state = initialState, action) => {
         return {
           ...state,
           strategyDetail: action.payload,
+          selectedStrategyBackTestData: action.payload.backTestData
         };
 
       case UPDATE_BACKTESTDATAINPUT:
@@ -74,7 +75,7 @@ const strategyReducer = (state = initialState, action) => {
           ...state,
           selectedStrategyBackTestData: [
             ...state.selectedStrategyBackTestData,
-            action.payload.newBackTestDataRecord,
+            action.payload,
           ],
         };
       
