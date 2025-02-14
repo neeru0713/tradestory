@@ -104,11 +104,7 @@ const selectedStrategyBackTestData = useSelector(
 
   return (
     <div className="">
-      <div className="flex flex-col gap-2 ">
-        {/* <div
-          className="flex items-center justify-between p-4 cursor-pointer "
-          onClick={toggleAccordion}
-        > */}
+      <div className="flex flex-col">
         <div className="flex p-4 m-4 align-items items-center gap-3 cursor-pointer">
           <h1 className="text-2xl font-semibold ">{name}</h1>
           <BsInfoCircle onClick={clickInfoHandler} className="text-lg" />
@@ -160,40 +156,32 @@ const selectedStrategyBackTestData = useSelector(
             </Drawer>
           )}
         </div>
-        <div className="flex">
-          <FiPlus
-            onClick={clickBackTestDataFormHandler}
-            className="flex m-4 text-algin text-right text-xl cursor-pointer"
-          />
-          {isAddNewIconClicked && (
-            <Drawer
-              drawerCloseHandler={drawerCloseHandler}
-              submitHandler={backTestDataSubmitHandler}
+        <div className="flex flex-col">
+          <div className="flex flex-row-reverse w-[95%]">
+            <div
+              onClick={clickBackTestDataFormHandler}
+              className="flex bg-[#635bff] cursor-pointer text-white gap-2 border rounded-lg align-items items-center  w-[10%] h-[2rem] mr-[5%] "
             >
-              <BackTestDataForm />
-            </Drawer>
-          )}
-        </div>
-
-        {/* <FaChevronDown
-            className={`transition-transform duration-300 ${
-              isOpen ? "rotate-180" : "rotate-0"
-            }`}
-          /> */}
-        {/* </div> */}
-
-        {/* {isOpen && (
-          <div className="p-4 border-t bg-gray-50">
-            <p className="text-gray-700">{strategyDetail.description}</p>
+              <FiPlus className="m-1" />
+              <h1>Add data</h1>
+            </div>
+            {isAddNewIconClicked && (
+              <Drawer
+                drawerCloseHandler={drawerCloseHandler}
+                submitHandler={backTestDataSubmitHandler}
+              >
+                <BackTestDataForm />
+              </Drawer>
+            )}
           </div>
-        )} */}
 
-        <div className="table-container max-h-[calc(100vh-150px)] m-4 border w-[50%] ">
-          <Table
-            tableName="strategyDetail"
-            columns={columns}
-            data={selectedStrategyBackTestData}
-          />
+          <div className="table-container max-h-[calc(100vh-150px)] m-4 border w-[90%] mt-2">
+            <Table
+              tableName="strategyDetail"
+              columns={columns}
+              data={selectedStrategyBackTestData}
+            />
+          </div>
         </div>
       </div>
     </div>

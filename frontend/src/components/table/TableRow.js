@@ -10,11 +10,11 @@ import { IoTrashOutline } from "react-icons/io5";
 import { openDrawer } from "../../redux/actions/drawerAction";
 
 
-const TableRow = ({ item, columns, tableName }) => {
+const TableRow = ({ item, columns, tableName,showSportingIcons = false, setShowSportingIcons }) => {
   const dispatch = useDispatch();
   // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editButtonClicked, SetEditButtonClicked ] = useState(false);
+  const [editButtonClicked, SetEditButtonClicked] = useState(false);
 
   const editClickHandler = () => {
     dispatch(updateTrade(item));
@@ -34,8 +34,6 @@ const TableRow = ({ item, columns, tableName }) => {
   const cancelDelete = () => {
     setIsModalOpen(false);
   };
-
-
 
   const marketIndexMap = {
     N: "Nifty 50",
@@ -58,10 +56,11 @@ const TableRow = ({ item, columns, tableName }) => {
 
   const updateTraderHandler = () => {
     dispatch(updateTrade(item));
-  }
+  };
 
   return (
     <>
+    
       <tr className="w-full flex p-2 text-sm hover:bg-[#f4f7f9] border border-l-0 border-r-0">
         {tableName === "strategy" ? (
           <Link to={`/strategy/${item.name}`} className="flex w-full ml-[1rem]">

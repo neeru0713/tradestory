@@ -84,7 +84,7 @@ export const getStrategyDetail = (name) => async (dispatch) => {
         const res = await axios.get(`${API_URL}/api/strategy/${name}`);
         dispatch(hideSpinner());
 
-        dispatch({ type: GET_STRATEGY_DETAIL, payload: res.data.strategy });
+      dispatch({ type: GET_STRATEGY_DETAIL, payload: res.data.strategy });
     } catch (error) {
       dispatch(hideSpinner());
       dispatch(

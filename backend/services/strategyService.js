@@ -15,7 +15,6 @@ async function getStrategy() {
 
 const getStrategyByName = async (name) => {
   const strategy = await Strategy.findOne({ name }).populate("backTestData");
-  
   if (!strategy) {
     throw new Error("Strategy not found");
   }
