@@ -10,7 +10,15 @@ import { IoTrashOutline } from "react-icons/io5";
 import { openDrawer } from "../../redux/actions/drawerAction";
 
 
-const TableRow = ({ item, columns, tableName,showSportingIcons = false, setShowSportingIcons }) => {
+const TableRow = ({
+  item,
+  columns,
+  tableName,
+  showSportingIcons = false,
+  setShowSportingIcons,
+  onMouseEnter,
+  onMouseLeave
+}) => {
   const dispatch = useDispatch();
   // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,8 +68,11 @@ const TableRow = ({ item, columns, tableName,showSportingIcons = false, setShowS
 
   return (
     <>
-    
-      <tr className="w-full flex p-2 text-sm hover:bg-[#f4f7f9] border border-l-0 border-r-0">
+      <tr
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        className="w-full flex p-2 text-sm hover:bg-[#f4f7f9] border border-l-0 border-r-0"
+      >
         {tableName === "strategy" ? (
           <Link to={`/strategy/${item.name}`} className="flex w-full ml-[1rem]">
             {columns?.map((col) => (

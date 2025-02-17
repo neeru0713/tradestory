@@ -177,7 +177,7 @@ const selectedStrategyBackTestData = useSelector(
 
           <div className="table-container max-h-[calc(100vh-150px)] m-4 border w-[90%] mt-2">
             <Table
-              tableName="strategyDetail"
+              tableName="backTestData"
               columns={columns}
               data={selectedStrategyBackTestData}
             />

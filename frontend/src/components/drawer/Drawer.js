@@ -12,7 +12,6 @@ const Drawer = ({
   submitHandler,
   showSubmitButton = true,
   drawerCloseHandler,
- 
 }) => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.drawer.isOpen);
@@ -35,13 +34,13 @@ const Drawer = ({
     <>
       <div
         className={`drawer-overlay z-20 fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          isOpen ? "opacity-100 visible " : "opacity-0 pointer-events-none"
         }`}
       ></div>
       <div
-        className={`drawer z-20 fixed top-0 right-0 h-full w-[30%] bg-gray-50 shadow-gray-500 transform   ${
+        className={`drawer z-20 fixed top-0 right-0 h-full w-[30%] bg-gray-50 shadow-gray-500 transform transition-transform duration-500 ease-in-out  ${
           isOpen ? "translate-x-0 shadow-xl" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out`}
+        }`}
       >
         <button
           className="absolute top-2 left-4 text-xl text-md hover:rounded-md hover:bg-gray-200 cursor-pointer py-[2px] px-[4px]"
