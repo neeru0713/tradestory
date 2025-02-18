@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Selector from "../form/Selector";
 import { updateBackTestDataInput } from "../../redux/actions/strategyAction";
 
-const BackTestDataForm = () => {
+const BackTestDataForm = ({}) => {
   const dispatch = useDispatch();
   const backTestDataInputForm = useSelector(
     (state) => state.strategy.backTestDataInputForm

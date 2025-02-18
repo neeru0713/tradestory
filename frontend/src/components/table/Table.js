@@ -8,27 +8,37 @@ import { createBackTestData } from "../../redux/actions/strategyAction";
 import { openDrawer } from "../../redux/actions/drawerAction";
 import { updateBackTestDataInput } from "../../redux/actions/strategyAction";
 import { useSelector, useDispatch } from "react-redux";
+import dayjs from "dayjs";
+import { FaEbay } from "react-icons/fa";
 
 const Table = ({ data, columns, tableName }) => {
   const dispatch = useDispatch();
   const [sortedData, setSortedData] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
-    const [showSportingIcons, setShowSportingIcons] = useState(false);
+  const [showSportingIcons, setShowSportingIcons] = useState(false);
   const [hoveredRow, setHoveredRow] = useState(null);
   const [isCopiedIconClicked, setIsCopiedIconClicked] = useState(false);
-    const strategyDetail = useSelector((state) => state.strategy.strategyDetail);
-    const backTestDataInputForm = useSelector(
-      (state) => state.strategy.backTestDataInputForm
-    );
+  const strategyDetail = useSelector((state) => state.strategy.strategyDetail);
+  const backTestDataInputForm = useSelector(
+    (state) => state.strategy.backTestDataInputForm
+  );
 
   useEffect(() => {
     // sortPNL();
     setSortedData(data);
   }, [data]);
 
+  const convertToYYYYMMDD = (dateString) => {
+    return dayjs(dateString, "D MMM, YYYY").format("YYYY-MM-DD");
+  };
+
   const handleMouseEnter = (index, event) => {
-    const rowTop = event.currentTarget.getBoundingClientRect().top; 
+    const rowTop = event.currentTarget.getBoundingClientRect().top;
     setHoveredRow(rowTop);
+
+    let modifiedDateFormat = convertToYYYYMMDD(data[index].date);
+    data[index] = { ...data[index], date: modifiedDateFormat };
+
     dispatch(updateBackTestDataInput(data[index]));
   };
 
@@ -37,19 +47,18 @@ const Table = ({ data, columns, tableName }) => {
   };
 
   const clickCopiedIconHandler = () => {
-    setIsCopiedIconClicked(true)
+    setIsCopiedIconClicked(true);
     dispatch(openDrawer());
-    
-  }
-  
-  const drawerCloseHandler  = () => {
-    // setIsCopiedIconClicked(false);
-  }
+  };
 
-    const backTestDataSubmitHandler = () => {
-        dispatch(createBackTestData(strategyDetail._id));
-      };
-  
+  const drawerCloseHandler = () => {
+    // setIsCopiedIconClicked(false);
+  };
+
+  const backTestDataSubmitHandler = () => {
+    dispatch(createBackTestData(strategyDetail._id));
+  };
+
   const sortPNL = () => {
     const sorted = [...sortedData].sort((a, b) => {
       if (sortOrder === "asc") {

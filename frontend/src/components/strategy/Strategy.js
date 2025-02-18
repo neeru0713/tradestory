@@ -40,8 +40,8 @@ const Strategy = (tableName) => {
     
 
     useEffect(() => {
-    dispatch(getStrategies());
-      },[]);
+      dispatch(getStrategies());
+    }, []);
     
     
      useEffect(() => {
