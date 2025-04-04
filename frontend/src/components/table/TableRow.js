@@ -101,7 +101,7 @@ const TableRow = ({
 
   const getClassForCell = (key) => {
     if(key === 'pnl'){
-      return item[key] >= 0 ? 'bg-green-100 p-1 rounded-md w-16' : 'bg-red-100 p-1 rounded-md w-16'
+      return item[key] >= 0 ? 'bg-green-100 p-1 rounded-md w-20' : 'bg-red-100 p-1 rounded-md w-20'
     }
   }
 

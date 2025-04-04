@@ -150,7 +150,7 @@ const Trade = (tableName, showSubmitButton) => {
             <FiPlus className="font-bold text-xl" />
           </div>
         </div>
-        <div className="relative">
+        {/* <div className="relative">
           <div
             onClick={filterClickHandler}
             className="flex border outline-dashed rounded-full w-max px-2 items-center gap-2 text-[#586173] hover:bg-[#f2f2fa] cursor-pointer"
@@ -199,7 +199,7 @@ const Trade = (tableName, showSubmitButton) => {
               ) : null}
             </div>
           )}
-        </div>
+        </div> */}
         <div className="table-container max-h-[calc(100vh-150px)] overflow-y-scroll border-b">
           <Table data={tradeData} columns={columns} tableName="trade" />
         </div>

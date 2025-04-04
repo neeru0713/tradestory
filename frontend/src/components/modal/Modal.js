@@ -55,9 +55,9 @@ const Modal = ({ title, children, numberOfPages, height, width, className, saveC
           {isShowPageNumber && <hr></hr>}
         </header>
 
-        <div className="modal-content h-[85%]">{renderContent()}</div>
+        <div className="modal-content h-[80%]">{renderContent()}</div>
 
-        <footer className="h-[10%] w-full">
+        <footer className="w-full">
           <div className="flex flex-col">
             {isShowPageNumber && <hr></hr>}
             <div className="w-full flex justify-between items-center pt-4">
