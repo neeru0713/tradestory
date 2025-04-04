@@ -9,7 +9,6 @@ import { FiEdit } from "react-icons/fi";
 import { IoTrashOutline } from "react-icons/io5";
 import { openDrawer } from "../../redux/actions/drawerAction";
 
-
 const TableRow = ({
   item,
   columns,
@@ -17,7 +16,7 @@ const TableRow = ({
   showSportingIcons = false,
   setShowSportingIcons,
   onMouseEnter,
-  onMouseLeave
+  onMouseLeave,
 }) => {
   const dispatch = useDispatch();
   // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -64,6 +63,25 @@ const TableRow = ({
 
   const updateTraderHandler = () => {
     dispatch(updateTrade(item));
+  };
+
+  const getValue = (keyName) => {
+    if (keyName === "returns") {
+      return item[keyName].toFixed(1);
+    }
+    if (keyName === "marketIndex") {
+      return marketIndexMap[item[keyName]];
+    }
+
+    if (keyName === "mistakeType") {
+      return mistakeTypeValuesOptions[item[keyName]];
+    }
+
+    if (keyName === "entryPrice" || keyName === "exitPrice") {
+      return `₹${item[keyName]}`;
+    } else {
+      return item[keyName];
+    }
   };
 
   return (
@@ -120,7 +138,7 @@ const TableRow = ({
                     </div>
                   </div>
                 ) : (
-                  <div className="">{item[col.key]}</div>
+                  <div className=""> {getValue(col.key)} </div>
                 )}
               </td>
             ))}
