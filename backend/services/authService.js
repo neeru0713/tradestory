@@ -10,6 +10,7 @@ async function createUser(userBody) {
   try {
     let userExists = await User.findOne({ email: userBody.email });
     if (userExists) {
+      console.log("Status code httpStatus.CONFLICT ", httpStatus.CONFLICT)
       throw new ApiError(httpStatus.CONFLICT, "Email already taken");
     } else {
       const newUser = new User(userBody);
@@ -20,6 +21,7 @@ async function createUser(userBody) {
       return result;
     }
   } catch (error) {
+    console.log("Status code httpStatus.INTERNAL_SERVER_ERROR ", httpStatus.INTERNAL_SERVER_ERROR, error)
     throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error.message);
   }
 }

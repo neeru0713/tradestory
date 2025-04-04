@@ -5,13 +5,14 @@ const httpStatus = require("http-status");
 
 const register = catchAsync(async (req, res) => {
   let newUser = await authService.createUser(req.body);
-  const token = await tokenService.generate
-  AuthTokens(newUser);
+  const token = await tokenService.generateAuthTokens(newUser);
+  console.log("Creating new user in register controller : ", newUser, token);
   let resObj = {
     user: newUser,
     token,
     message: "User registeration successful",
   };
+  console.log("Status code httpStatus.CREATED ", httpStatus.CREATED)
   res.status(httpStatus.CREATED).json(resObj);
 });
 
@@ -24,6 +25,7 @@ const login = catchAsync(async (req, res) => {
     token,
     message: "User login successful",
   };
+  console.log("Status code httpStatus.OK ", httpStatus.OK)
   res.status(httpStatus.OK).json(resObj);
 });
 
