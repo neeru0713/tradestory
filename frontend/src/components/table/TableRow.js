@@ -61,13 +61,19 @@ const TableRow = ({
     OE: "Over Expectation",
   };
 
+  const drawerCloseHandler = () => {
+    // setIsInfoIconClicked(false)
+    // setIsAddNewIconClicked(false)
+  }
+
+
   const updateTraderHandler = () => {
     dispatch(updateTrade(item));
   };
 
   const getValue = (keyName) => {
     if (keyName === "returns") {
-      return item[keyName].toFixed(1);
+      return item[keyName].toFixed(1)+'%';
     }
     if (keyName === "marketIndex") {
       return marketIndexMap[item[keyName]];
@@ -77,12 +83,27 @@ const TableRow = ({
       return mistakeTypeValuesOptions[item[keyName]];
     }
 
+    if (keyName === "pnl") {
+      if(item[keyName] < 0){
+        return `- ₹${Math.abs(item[keyName])}`
+      } else {
+        return `₹${Math.abs(item[keyName])}`
+      }
+     
+    }
+
     if (keyName === "entryPrice" || keyName === "exitPrice") {
       return `₹${item[keyName]}`;
     } else {
       return item[keyName];
     }
   };
+
+  const getClassForCell = (key) => {
+    if(key === 'pnl'){
+      return item[key] >= 0 ? 'bg-green-100 p-1 rounded-md w-16' : 'bg-red-100 p-1 rounded-md w-16'
+    }
+  }
 
   return (
     <>
@@ -138,7 +159,7 @@ const TableRow = ({
                     </div>
                   </div>
                 ) : (
-                  <div className=""> {getValue(col.key)} </div>
+                  <div className={getClassForCell(col.key)}> {getValue(col.key)} </div>
                 )}
               </td>
             ))}
@@ -146,7 +167,7 @@ const TableRow = ({
         )}
       </tr>
       {editButtonClicked && (
-        <Drawer tradeId={item._id} submitHandler={updateTraderHandler}>
+        <Drawer tradeId={item._id} submitHandler={updateTraderHandler} drawerCloseHandler={drawerCloseHandler}>
           {/* <h1>hello</h1> */}
           <TradeForm />
         </Drawer>
