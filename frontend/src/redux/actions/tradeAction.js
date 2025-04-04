@@ -27,6 +27,7 @@ export const createTrade = () => async (dispatch, getState) => {
     dispatch(hideSpinner());
     dispatch(showNotification({type: 'success', message: "Trade created successfully", sticky: false}));
     dispatch(closeModal())
+    dispatch(getTrades())
   } catch (error) {
     dispatch(hideSpinner());
     dispatch(closeModal())
