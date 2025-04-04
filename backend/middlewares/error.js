@@ -1,15 +1,16 @@
-
 const errorHandler = (err, req, res, next) => {
-  let { statusCode, message } = err;
+  const statusCode = err.statusCode && Number.isInteger(err.statusCode)
+    ? err.statusCode
+    : 500;
 
-  res.locals.errorMessage = err.message;
+  const message = err.message || "Internal Server Error";
 
-  const response = {
+  res.locals.errorMessage = message;
+
+  res.status(statusCode).json({
     code: statusCode,
     message,
-  };
-
-  res.status(statusCode).send(response);
+  });
 };
 
 module.exports = {
